@@ -3,375 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club Hub | by Teacher Netza</title>
+    <title>Rators Club Hub | Dynamic Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: CYBER-LUXE PLATINUM
+           SISTEMA DE DISEÑO: PLATINUM DYNAMIC
            ======================================== */
         :root {
-            /* MODO CLARO (Default - Elegante y Brillante) */
             --bg: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.8);
+            --header-bg: rgba(255, 255, 255, 0.9);
             --card-bg: #fdfdfd;
             --text-main: #0f172a;
             --text-muted: #64748b;
             --primary: #7c3aed;
             --secondary: #0ea5e9;
-            --accent: #f59e0b;
             --border: #f1f5f9;
             --shadow: 0 20px 50px rgba(0,0,0,0.04);
-            --neon-glow: 0 0 20px rgba(124, 58, 237, 0.15);
-            --gradient: linear-gradient(135deg, #7c3aed, #0ea5e9);
+            --glow: 0 0 25px rgba(124, 58, 237, 0.15);
         }
 
         .dark-mode {
-            /* MODO OSCURO (Opcional - Cyber Deep) */
             --bg: #020617;
-            --header-bg: rgba(2, 6, 23, 0.85);
+            --header-bg: rgba(2, 6, 23, 0.9);
             --card-bg: #0f172a;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --primary: #a78bfa;
             --secondary: #38bdf8;
             --border: #1e293b;
-            --shadow: 0 20px 50px rgba(0,0,0,0.5);
-            --neon-glow: 0 0 30px rgba(56, 189, 248, 0.2);
+            --shadow: 0 30px 60px rgba(0,0,0,0.6);
+            --glow: 0 0 35px rgba(56, 189, 248, 0.3);
         }
 
-        /* --- Reset & Smoothness --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background: var(--bg); color: var(--text-main); 
-            margin: 0; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0; transition: all 0.5s ease;
             overflow-x: hidden; line-height: 1.6;
         }
 
-        /* Fondo de Ingeniería Limpia */
+        /* Cuadrícula de Ingeniería */
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(var(--border) 1.5px, transparent 1.5px);
             background-size: 40px 40px; opacity: 0.4; z-index: -1;
         }
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        /* --- Header: Rators Club Branding --- */
+        /* --- Header con Branding --- */
         header {
-            padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
             background: var(--header-bg); backdrop-filter: blur(20px);
-            position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--primary);
             box-shadow: var(--shadow);
         }
-        .header-left { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-container {
-            width: 48px; height: 48px; background: var(--card-bg); 
-            border: 2px solid var(--primary); border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: var(--neon-glow);
-        }
-        .logo-svg { width: 32px; fill: var(--primary); }
-        .brand-info b { font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--text-main); letter-spacing: 1px; line-height: 1; }
-        .brand-info span { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; display: block; margin-top: 4px; }
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-box { width: 42px; height: 42px; background: var(--bg); border: 2.5px solid var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow); }
+        .logo-svg { width: 28px; fill: var(--primary); }
+        .brand-text b { font-family: 'Outfit'; font-size: 1.3rem; letter-spacing: 1px; }
+        .brand-text span { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; display: block; }
 
-        /* Botón de Tema */
-        .ui-controls { display: flex; align-items: center; gap: 20px; }
-        .theme-switch {
-            background: var(--card-bg); border: 2px solid var(--border); width: 48px; height: 48px;
-            border-radius: 15px; cursor: pointer; color: var(--text-main);
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            transition: 0.3s;
+        .theme-btn {
+            background: var(--card-bg); border: 2px solid var(--border); width: 45px; height: 45px;
+            border-radius: 12px; cursor: pointer; color: var(--text-main);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s;
         }
-        .theme-switch:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--neon-glow); }
 
-        /* --- Hero Section: Autoridad Académica --- */
-        .hero-section { 
-            padding: 10rem 2rem 6rem; text-align: center; max-width: 1100px; margin: 0 auto;
-            position: relative;
-        }
-        .hero-section h1 { 
-            font-size: clamp(2.5rem, 8vw, 5.2rem); font-weight: 800; margin: 0; line-height: 0.95; 
-            letter-spacing: -3px; color: var(--text-main);
-        }
-        .hero-section h1 em { font-style: normal; color: var(--primary); }
-        .hero-section p { 
-            font-size: 1.4rem; color: var(--text-muted); margin: 35px auto; 
-            max-width: 800px; font-weight: 400;
-        }
-        
-        .hero-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 50px; }
-        .hero-badge { 
-            background: var(--card-bg); border: 1.5px solid var(--border); padding: 12px 25px; 
-            border-radius: 20px; font-size: 0.9rem; font-weight: 800; color: var(--text-main);
-            box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px;
-            transition: 0.4s;
-        }
-        .hero-badge:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--neon-glow); }
-        .hero-badge i { color: var(--secondary); font-size: 1.1rem; }
+        /* --- Hero --- */
+        .hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; margin: 0; letter-spacing: -2px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 25px; }
 
-        /* --- LAB CARDS GRID (7 TARJETAS) --- */
-        .main-container { max-width: 1250px; margin: 4rem auto; padding: 0 30px; }
-        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 35px; }
-        
+        /* --- Tabs System (Pestañas de Niveles) --- */
+        .tabs-container {
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 4rem;
+            position: sticky; top: 100px; z-index: 1000; padding: 10px;
+        }
+        .tab-btn {
+            background: var(--card-bg); border: 2px solid var(--border); padding: 12px 25px;
+            border-radius: 15px; cursor: pointer; color: var(--text-main); font-weight: 800;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .tab-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: var(--glow); }
+
+        /* --- Dynamic Grid --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        .labs-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+            gap: 30px; min-height: 400px;
+        }
+
         .lab-card {
-            background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 45px;
-            padding: 4rem 3rem; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 40px;
+            padding: 3rem; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none; color: inherit; display: flex; flex-direction: column;
-            justify-content: space-between; position: relative; overflow: hidden;
-            box-shadow: var(--shadow);
+            justify-content: space-between; box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease forwards;
         }
-        .lab-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--gradient); opacity: 0; transition: 0.4s; z-index: 0;
-        }
-        .lab-card:hover { 
-            transform: translateY(-15px) scale(1.02); border-color: transparent;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.08);
-        }
-        .lab-card:hover * { color: white !important; z-index: 1; }
-        .lab-card:hover::before { opacity: 1; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .icon-wrapper { 
-            width: 80px; height: 80px; background: rgba(124, 58, 237, 0.08); 
-            border-radius: 24px; display: flex; align-items: center; justify-content: center;
-            font-size: 2.2rem; color: var(--primary); margin-bottom: 35px;
-            transition: 0.4s; position: relative; z-index: 1;
-        }
-        .lab-card h3 { font-size: 1.9rem; margin: 0 0 15px 0; font-weight: 800; letter-spacing: -1px; position: relative; z-index: 1; }
-        .lab-card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; position: relative; z-index: 1; }
+        .lab-card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: var(--glow); }
         
-        .card-btn {
-            width: 100%; padding: 20px; border-radius: 22px; border: 2.5px solid var(--border);
+        .icon-circle { 
+            width: 65px; height: 65px; background: rgba(124, 58, 237, 0.08); 
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--primary); margin-bottom: 25px;
+        }
+        .lab-card h3 { font-size: 1.7rem; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.5px; }
+        .lab-card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; line-height: 1.6; }
+        
+        .btn-card {
+            width: 100%; padding: 16px; border-radius: 18px; border: 2.5px solid var(--border);
             color: var(--text-main); font-weight: 800; text-align: center;
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            position: relative; z-index: 1;
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; transition: 0.3s;
         }
-        .lab-card:hover .card-btn { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); }
+        .lab-card:hover .btn-card { border-color: var(--primary); background: var(--primary); color: white; }
 
-        /* --- FOOTER & CONTACT (Elegancia Absoluta) --- */
-        footer { 
-            padding: 10rem 2rem 5rem; border-top: 1px solid var(--border); 
-            margin-top: 10rem; text-align: center; background: var(--card-bg);
-            position: relative;
-        }
-        .footer-brand { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; font-family: 'Outfit'; }
-        .footer-brand span { color: var(--primary); }
-        
-        .contact-container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; max-width: 1100px; margin: 70px auto; 
-        }
-        .contact-tile { 
-            padding: 45px; border-radius: 35px; border: 1.5px solid var(--border); 
-            background: var(--bg); transition: 0.4s; text-align: center;
-            box-shadow: var(--shadow);
-        }
-        .contact-tile:hover { border-color: var(--secondary); transform: scale(1.03); box-shadow: var(--neon-glow); }
-        .contact-tile i { font-size: 2.5rem; color: var(--accent); margin-bottom: 25px; display: block; }
-        .contact-tile b { font-size: 1.4rem; color: var(--text-main); display: block; margin-bottom: 10px; }
-        .contact-tile span { color: var(--text-muted); font-weight: 600; font-size: 1.1rem; }
+        /* --- Loader Animado --- */
+        .loader-box { grid-column: 1 / -1; text-align: center; padding: 5rem; }
+        .spinner { width: 50px; height: 50px; border: 5px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s infinite linear; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Firma & Licencia */
-        .license-area { 
-            margin-top: 100px; padding-top: 50px; border-top: 1.5px solid var(--border);
-            opacity: 0.6; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px;
-            color: var(--text-muted);
-        }
+        /* --- Footer --- */
+        footer { padding: 8rem 2rem 5rem; border-top: 1px solid var(--border); margin-top: 10rem; text-align: center; background: var(--card-bg); }
+        .license { margin-top: 60px; opacity: 0.5; font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; }
 
-        /* WhatsApp Bubble (Cyber-Light) */
-        .wa-action {
-            position: fixed; bottom: 50px; right: 50px; background: #25d366; color: white;
-            width: 85px; height: 85px; border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-size: 45px; z-index: 3000; box-shadow: 0 25px 50px rgba(37, 211, 102, 0.4);
-            text-decoration: none; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .wa-action:hover { transform: scale(1.15) rotate(12deg); }
+        .wa-float { position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; z-index: 3000; box-shadow: 0 20px 40px rgba(0,0,0,0.2); text-decoration: none; }
 
-        /* ========================================
-           RESPONSIVE REFINEMENT
-           ======================================== */
         @media (max-width: 768px) {
-            .hero-section h1 { font-size: 3.5rem; }
-            header { padding: 1rem 2rem; }
-            .labs-grid { grid-template-columns: 1fr; }
-            .lab-card { padding: 3rem 2rem; }
-            .wa-action { width: 70px; height: 70px; font-size: 38px; bottom: 30px; right: 30px; }
-            .hero-badges { gap: 10px; }
+            .tabs-container { overflow-x: auto; justify-content: flex-start; padding: 10px 20px; }
+            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="#" class="header-left">
-        <div class="logo-container">
+    <a href="#" class="header-brand">
+        <div class="logo-box">
             <svg class="logo-svg" viewBox="0 0 100 100">
                 <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="6"/>
                 <path d="M45 35 Q50 15 55 35 Q60 15 65 35" fill="#ef4444"/>
                 <path d="M75 55 L85 60 L75 65 Z" fill="#f59e0b"/>
             </svg>
         </div>
-        <div class="brand-info">
-            <b>RATORS CLUB</b>
-            <span>by Teacher Netza</span>
+        <div class="brand-text">
+            <b>RATORS HUB</b>
+            <span>by Rators Team</span>
         </div>
     </a>
-    <div class="ui-controls">
-        <button class="theme-switch" onclick="toggleTheme()" id="themeTrigger">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeTrigger"><i class="fas fa-moon"></i></button>
 </header>
 
 <main>
-    <section class="hero-section">
-        <h1>Engineering <em>Advanced</em> Fluency</h1>
-        <p>"El inglés no se trata de hacerlo como 'nativo', se trata de mejorar y practicar constantemente, sin miedo a lo nuevo e intentarlo."</p>
-        
-        <div class="hero-badges">
-            <div class="hero-badge"><i class="fas fa-award"></i> 7 Años de Exp.</div>
-            <div class="hero-badge"><i class="fas fa-university"></i> Lic. en Educación</div>
-            <div class="hero-badge"><i class="fas fa-certificate"></i> Técnico e Inglés TOEFL</div>
-            <div class="hero-badge"><i class="fas fa-map-pin"></i> Tepic, Nayarit</div>
-        </div>
+    <section class="hero">
+        <h1>Advanced <span>English Lab</span></h1>
+        <p>Selecciona tu nivel de entrenamiento. Los laboratorios se sincronizan en tiempo real con nuestra base de datos de ingeniería lingüística.</p>
     </section>
 
-    <div class="main-container">
-        <div class="labs-grid">
-            
-            <a href="https://teachernetza.github.io/softeners/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-feather"></i></div>
-                <div>
-                    <h3>Softeners</h3>
-                    <p>Domina el arte de la cortesía profesional. Estructuras clave para suavizar tu lenguaje en el trabajo y la educación.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="filterLevel('All', this)">All Labs</button>
+        <button class="tab-btn" onclick="filterLevel('Basic', this)">Basic</button>
+        <button class="tab-btn" onclick="filterLevel('Intermediate', this)">Intermediate</button>
+        <button class="tab-btn" onclick="filterLevel('Advanced', this)">Advanced</button>
+    </div>
 
-            <a href="https://teachernetza.github.io/speakingflucency/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-bolt"></i></div>
-                <div>
-                    <h3>Fluency Skills</h3>
-                    <p>Aprende las conexiones de palabras y el ritmo necesario para hablar con una fluidez natural y constante.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
-            <a href="https://teachernetza.github.io/idiomsandverbs/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-comments"></i></div>
-                <div>
-                    <h3>Phrasal Verbs & Idioms</h3>
-                    <p>Integración de vocabulario casual y expresiones idiomáticas para mejorar significativamente tu habla cotidiana.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
-            <a href="https://teachernetza.github.io/schwa-/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-microphone"></i></div>
-                <div>
-                    <h3>Schwa Sound /ǝ/</h3>
-                    <p>El secreto de la pronunciación avanzada. Domina el sonido más frecuente del inglés para sonar como un pro.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
-            <a href="https://teachernetza.github.io/prepositions-of-place-and-movement/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-street-view"></i></div>
-                <div>
-                    <h3>Urban Prepositions</h3>
-                    <p>Simulador interactivo para dominar las preposiciones de lugar y movimiento en contextos urbanos reales.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
-            <a href="https://teachernetza.github.io/abc/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-spell-check"></i></div>
-                <div>
-                    <h3>ABC Master Lab</h3>
-                    <p>Deletreo avanzado y fonética del abecedario. Elimina las confusiones comunes de una vez por todas.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
-            <a href="https://teachernetza.github.io/connectorsb2/" class="lab-card">
-                <div class="icon-wrapper"><i class="fas fa-project-diagram"></i></div>
-                <div>
-                    <h3>Connect Ideas</h3>
-                    <p>Arquitectura de oraciones complejas. Aprende a unir tus pensamientos usando conectores de nivel B2/C1.</p>
-                </div>
-                <div class="card-btn">ENTRAR AL LAB <i class="fas fa-chevron-right"></i></div>
-            </a>
-
+    <div class="container">
+        <div class="labs-grid" id="labsContainer">
+            <div class="loader-box"><div class="spinner"></div><p>Sincronizando con Rators Database...</p></div>
         </div>
     </div>
 </main>
 
 <footer>
-    <div class="footer-brand">RATORS<span>CLUB</span></div>
-    <p style="color: var(--text-muted); font-weight: 600; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
-        Asesorías personales, preparaciones especiales y entrenamiento intensivo para certificación TOEFL.
-    </p>
-    
-    <div class="contact-container">
-        <div class="contact-tile">
-            <i class="fab fa-whatsapp"></i>
-            <b>WhatsApp Club</b>
-            <span>323 111 64 25</span>
-        </div>
-        <div class="contact-tile">
-            <i class="fas fa-envelope-open-text"></i>
-            <b>Email</b>
-            <span>teacher.netza.varo@gmail.com</span>
-        </div>
-        <div class="contact-tile">
-            <i class="fas fa-map-marked"></i>
-            <b>Ubicación</b>
-            <span>Nayarit, México</span>
-        </div>
-    </div>
-    
-    <div class="license-area">
-        © 2026 RATORS TEAM | PROFESSIONAL ENGLISH COACHING<br>
-        Licensed under GNU GPL v3.0 | All Rights Reserved
+    <div style="font-size: 2rem; font-weight: 800; margin-bottom: 10px;">RATORS<span>CLUB</span></div>
+    <p style="font-weight: 700; color: var(--text-muted);">Teacher Netza Varo | Professional English Coach</p>
+    <div class="license">
+        © 2026 RATORS TEAM | ALL RIGHTS RESERVED<br>
+        Licensed under GNU GPL v3.0 | by Rators Team
     </div>
 </footer>
 
-<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20tus%20clases%20y%20paquetes." class="wa-action" target="_blank">
+<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20tus%20clases%20y%20paquetes." class="wa-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-    /* --- MOTOR DE TEMAS (LIGHT DEFAULT) --- */
-    function toggleTheme() {
-        const body = document.body;
-        const btn = document.getElementById('themeTrigger');
-        body.classList.toggle('dark-mode');
-        
-        if(body.classList.contains('dark-mode')) {
-            btn.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('rator-hub-theme', 'dark');
-        } else {
-            btn.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('rator-hub-theme', 'light');
+    /* ========================================
+       ENGINE: DYNAMIC DATA LOADER
+       ======================================== */
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
+    let allLabs = [];
+
+    async function fetchLabs() {
+        try {
+            const response = await fetch(SHEET_CSV_URL);
+            const data = await response.text();
+            allLabs = parseCSV(data);
+            renderLabs('All');
+        } catch (error) {
+            console.error('Error sincronizando datos:', error);
+            document.getElementById('labsContainer').innerHTML = '<p>Error de conexión con la base de datos.</p>';
         }
     }
 
-    /* --- PERSISTENCIA --- */
-    window.onload = () => {
-        const saved = localStorage.getItem('rator-hub-theme');
-        if(saved === 'dark') toggleTheme();
+    function parseCSV(csvText) {
+        const lines = csvText.split('\n');
+        const result = [];
+        // Saltamos la cabecera (primera fila)
+        for (let i = 1; i < lines.length; i++) {
+            const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // Regex robusta para comas en CSV
+            if (currentline.length >= 4) {
+                result.push({
+                    level: currentline[0].trim().replace(/"/g, ''),
+                    name: currentline[1].trim().replace(/"/g, ''),
+                    desc: currentline[2].trim().replace(/"/g, ''),
+                    link: currentline[3].trim().replace(/"/g, '')
+                });
+            }
+        }
+        return result;
     }
-</script>
 
+    function renderLabs(levelFilter) {
+        const container = document.getElementById('labsContainer');
+        container.innerHTML = '';
+        
+        const filtered = levelFilter === 'All' 
+            ? allLabs 
+            : allLabs.filter(lab => lab.level.toLowerCase() === levelFilter.toLowerCase());
+
+        if (filtered.length === 0) {
+            container.innerHTML = `<div class="loader-box"><p>No hay laboratorios disponibles en este nivel por ahora.</p></div>`;
+            return;
+        }
+
+        filtered.forEach(lab => {
+            const card = document.createElement('a');
+            card.href = lab.link;
+            card.className = 'lab-card';
+            card.target = '_blank';
+            
+            // Icono dinámico según nivel
+            let iconClass = 'fa-bolt';
+            if(lab.level === 'Basic') iconClass = 'fa-seedling';
+            if(lab.level === 'Advanced') iconClass = 'fa-microchip';
+
+            card.innerHTML = `
+                <div>
+                    <div class="icon-circle"><i class="fas ${iconClass}"></i></div>
+                    <span style="font-size: 0.7rem; font-weight: 800; color: var(--primary); text-transform: uppercase;">${lab.level} Level</span>
+                    <h3>${lab.name}</h3>
+                    <p>${lab.desc}</p>
+                </div>
+                <div class="btn-card">Entrar al Lab</div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterLevel(level, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderLabs(level);
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.getElementById('themeTrigger');
+        btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    window.onload = fetchLabs;
+</script>
 </body>
 </html>
-
