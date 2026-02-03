@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club Hub | Dynamic Edition</title>
+    <title>Rators Club Hub | Professional Engineering</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: PLATINUM DYNAMIC
+           SISTEMA DE DISEÑO: COBALT PLATINUM
            ======================================== */
         :root {
-            --bg: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.9);
-            --card-bg: #fdfdfd;
+            --bg: #f1f5f9; /* Un gris muy claro para contraste */
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #ffffff;
             --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #7c3aed;
-            --secondary: #0ea5e9;
-            --border: #f1f5f9;
-            --shadow: 0 20px 50px rgba(0,0,0,0.04);
-            --glow: 0 0 25px rgba(124, 58, 237, 0.15);
+            --text-muted: #475569;
+            --primary: #2563eb; /* Azul Royal */
+            --secondary: #0ea5e9; /* Azul Eléctrico */
+            --border: #cbd5e1;
+            --shadow-soft: 0 10px 25px rgba(0,0,0,0.05);
+            --shadow-heavy: 0 20px 50px rgba(0,0,0,0.1);
+            --glow-blue: 0 0 30px rgba(37, 99, 235, 0.4);
         }
 
         .dark-mode {
             --bg: #020617;
-            --header-bg: rgba(2, 6, 23, 0.9);
+            --header-bg: rgba(15, 23, 42, 0.9);
             --card-bg: #0f172a;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --primary: #a78bfa;
-            --secondary: #38bdf8;
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
             --border: #1e293b;
-            --shadow: 0 30px 60px rgba(0,0,0,0.6);
-            --glow: 0 0 35px rgba(56, 189, 248, 0.3);
+            --shadow-heavy: 0 30px 60px rgba(0,0,0,0.6);
+            --glow-blue: 0 0 40px rgba(59, 130, 246, 0.5);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -43,103 +44,157 @@
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background: var(--bg); color: var(--text-main); 
-            margin: 0; transition: all 0.5s ease;
+            margin: 0; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden; line-height: 1.6;
         }
 
-        /* Cuadrícula de Ingeniería */
+        /* Cuadrícula de Ingeniería para contraste visual */
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: radial-gradient(var(--border) 1.5px, transparent 1.5px);
-            background-size: 40px 40px; opacity: 0.4; z-index: -1;
+            background-size: 50px 50px; opacity: 0.3; z-index: -1;
         }
 
-        /* --- Header con Branding --- */
+        /* --- Header: Rators Branding --- */
         header {
-            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center;
             background: var(--header-bg); backdrop-filter: blur(20px);
-            position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--primary);
-            box-shadow: var(--shadow);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 4px solid var(--primary);
+            box-shadow: var(--shadow-heavy);
         }
-        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-        .logo-box { width: 42px; height: 42px; background: var(--bg); border: 2.5px solid var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow); }
-        .logo-svg { width: 28px; fill: var(--primary); }
-        .brand-text b { font-family: 'Outfit'; font-size: 1.3rem; letter-spacing: 1px; }
-        .brand-text span { font-size: 0.7rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; display: block; }
+        .header-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
+        .logo-container {
+            width: 45px; height: 45px; background: var(--card-bg); 
+            border: 2.5px solid var(--primary); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--glow-blue);
+        }
+        .logo-svg { width: 30px; fill: var(--primary); }
+        .brand-info b { font-family: 'Outfit'; font-size: 1.5rem; color: var(--text-main); letter-spacing: 1px; }
+        .brand-info span { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; display: block; }
 
-        .theme-btn {
-            background: var(--card-bg); border: 2px solid var(--border); width: 45px; height: 45px;
-            border-radius: 12px; cursor: pointer; color: var(--text-main);
+        .btn-ui {
+            background: var(--card-bg); border: 2px solid var(--border); width: 48px; height: 48px;
+            border-radius: 15px; cursor: pointer; color: var(--text-main);
             display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: 0.3s;
         }
+        .btn-ui:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--glow-blue); }
 
-        /* --- Hero --- */
-        .hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 900px; margin: 0 auto; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; margin: 0; letter-spacing: -2px; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-top: 25px; }
-
-        /* --- Tabs System (Pestañas de Niveles) --- */
-        .tabs-container {
-            display: flex; justify-content: center; gap: 10px; margin-bottom: 4rem;
-            position: sticky; top: 100px; z-index: 1000; padding: 10px;
+        /* --- Hero: Propósito del Hub --- */
+        .hero { 
+            padding: 9rem 2rem 5rem; text-align: center; max-width: 1000px; margin: 0 auto;
+            animation: fadeInDown 0.8s ease-out;
         }
-        .tab-btn {
-            background: var(--card-bg); border: 2px solid var(--border); padding: 12px 25px;
-            border-radius: 15px; cursor: pointer; color: var(--text-main); font-weight: 800;
-            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
-            box-shadow: var(--shadow);
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4.8rem); font-weight: 800; margin: 0; letter-spacing: -3px; line-height: 1; }
+        .hero h1 span { color: var(--primary); text-shadow: var(--glow-blue); }
+        .hero p { font-size: 1.3rem; color: var(--text-muted); margin: 35px auto; max-width: 750px; font-weight: 500; }
+        
+        .purpose-tag {
+            background: var(--card-bg); border: 2px solid var(--primary); padding: 10px 20px;
+            border-radius: 50px; display: inline-block; font-weight: 800; font-size: 0.9rem;
+            color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;
         }
-        .tab-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
-        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: var(--glow); }
 
-        /* --- Dynamic Grid --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
-        .labs-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
-            gap: 30px; min-height: 400px;
+        /* --- Tabs: Filtro estricto por Niveles --- */
+        .tabs-hub {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 5rem;
+            position: sticky; top: 110px; z-index: 1000; padding: 15px;
+        }
+        .tab-trigger {
+            background: var(--card-bg); border: 2.5px solid var(--border); padding: 14px 30px;
+            border-radius: 20px; cursor: pointer; color: var(--text-main); font-weight: 800;
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.4s;
+            box-shadow: var(--shadow-soft);
+        }
+        .tab-trigger:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: var(--glow-blue); }
+        .tab-trigger.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: var(--glow-blue); }
+
+        /* --- Dynamic Card Grid --- */
+        .main-content { max-width: 1250px; margin: 0 auto; padding: 0 30px; }
+        .labs-container { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); 
+            gap: 40px; min-height: 500px;
         }
 
         .lab-card {
-            background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 40px;
-            padding: 3rem; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            background: var(--card-bg); border: 2.5px solid var(--border); border-radius: 45px;
+            padding: 4rem 3rem; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none; color: inherit; display: flex; flex-direction: column;
-            justify-content: space-between; box-shadow: var(--shadow);
-            animation: fadeIn 0.5s ease forwards;
+            justify-content: space-between; box-shadow: var(--shadow-heavy);
+            opacity: 0; transform: translateY(30px);
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .lab-card.visible { opacity: 1; transform: translateY(0); }
 
-        .lab-card:hover { transform: translateY(-12px); border-color: var(--primary); box-shadow: var(--glow); }
-        
-        .icon-circle { 
-            width: 65px; height: 65px; background: rgba(124, 58, 237, 0.08); 
-            border-radius: 20px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; color: var(--primary); margin-bottom: 25px;
+        .lab-card:hover { 
+            transform: translateY(-15px) scale(1.02); border-color: var(--primary); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1), var(--glow-blue); 
         }
-        .lab-card h3 { font-size: 1.7rem; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.5px; }
-        .lab-card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 30px; line-height: 1.6; }
         
-        .btn-card {
-            width: 100%; padding: 16px; border-radius: 18px; border: 2.5px solid var(--border);
+        .icon-box { 
+            width: 75px; height: 75px; background: rgba(37, 99, 235, 0.1); 
+            border-radius: 22px; display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; color: var(--primary); margin-bottom: 30px;
+            transition: 0.4s;
+        }
+        .lab-card:hover .icon-box { background: var(--primary); color: white; transform: rotate(-5deg); }
+        
+        .lab-card h3 { font-size: 1.9rem; margin: 0 0 12px; font-weight: 800; letter-spacing: -1px; }
+        .lab-card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 35px; line-height: 1.7; }
+        
+        .btn-card-enter {
+            width: 100%; padding: 20px; border-radius: 22px; border: 3px solid var(--border);
             color: var(--text-main); font-weight: 800; text-align: center;
-            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1.5px; transition: 0.3s;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s;
         }
-        .lab-card:hover .btn-card { border-color: var(--primary); background: var(--primary); color: white; }
+        .lab-card:hover .btn-card-enter { border-color: var(--primary); background: var(--primary); color: white; }
 
-        /* --- Loader Animado --- */
-        .loader-box { grid-column: 1 / -1; text-align: center; padding: 5rem; }
-        .spinner { width: 50px; height: 50px; border: 5px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s infinite linear; margin: 0 auto 20px; }
+        /* --- Footer & Contact Area --- */
+        footer { 
+            padding: 10rem 2rem 5rem; border-top: 2px solid var(--primary); 
+            margin-top: 12rem; text-align: center; background: var(--card-bg);
+            animation: fadeIn 1.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .footer-brand { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; font-family: 'Outfit'; }
+        .footer-brand span { color: var(--primary); }
+        
+        .contact-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; max-width: 1100px; margin: 60px auto; 
+        }
+        .contact-tile { 
+            padding: 45px; border-radius: 35px; border: 2px solid var(--border); 
+            background: var(--bg); transition: 0.4s;
+        }
+        .contact-tile:hover { border-color: var(--secondary); transform: scale(1.03); box-shadow: var(--glow-blue); }
+        .contact-tile i { font-size: 2.5rem; color: var(--accent); margin-bottom: 25px; display: block; }
+        .contact-tile b { font-size: 1.4rem; color: var(--text-main); display: block; margin-bottom: 10px; }
+        
+        .license-text { margin-top: 80px; opacity: 0.5; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; color: var(--text-muted); }
+
+        /* --- WhatsApp Floating (Rators Style) --- */
+        .wa-float-btn { 
+            position: fixed; bottom: 50px; right: 50px; background: #25d366; color: white; 
+            width: 85px; height: 85px; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 45px; z-index: 3000; 
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.4s; 
+        }
+        .wa-float-btn:hover { transform: scale(1.15) rotate(12deg); }
+
+        /* --- Loader de Sistema --- */
+        .sys-loader { grid-column: 1 / -1; text-align: center; padding: 8rem; }
+        .sys-spinner { width: 60px; height: 60px; border: 6px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s infinite linear; margin: 0 auto 25px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* --- Footer --- */
-        footer { padding: 8rem 2rem 5rem; border-top: 1px solid var(--border); margin-top: 10rem; text-align: center; background: var(--card-bg); }
-        .license { margin-top: 60px; opacity: 0.5; font-size: 0.85rem; font-weight: 700; letter-spacing: 1.5px; }
-
-        .wa-float { position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; z-index: 3000; box-shadow: 0 20px 40px rgba(0,0,0,0.2); text-decoration: none; }
-
         @media (max-width: 768px) {
-            .tabs-container { overflow-x: auto; justify-content: flex-start; padding: 10px 20px; }
-            .hero h1 { font-size: 3rem; }
+            header { padding: 1rem 1.5rem; }
+            .tabs-hub { overflow-x: auto; justify-content: flex-start; padding: 15px 25px; top: 85px; }
+            .hero h1 { font-size: 3.2rem; }
+            .lab-card { padding: 3rem 2rem; }
+            .wa-float-btn { width: 70px; height: 70px; font-size: 35px; bottom: 30px; right: 30px; }
         }
     </style>
 </head>
@@ -147,141 +202,166 @@
 
 <header>
     <a href="#" class="header-brand">
-        <div class="logo-box">
+        <div class="logo-container">
             <svg class="logo-svg" viewBox="0 0 100 100">
                 <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="6"/>
                 <path d="M45 35 Q50 15 55 35 Q60 15 65 35" fill="#ef4444"/>
                 <path d="M75 55 L85 60 L75 65 Z" fill="#f59e0b"/>
             </svg>
         </div>
-        <div class="brand-text">
+        <div class="brand-info">
             <b>RATORS HUB</b>
             <span>by Rators Team</span>
         </div>
     </a>
-    <button class="theme-btn" onclick="toggleTheme()" id="themeTrigger"><i class="fas fa-moon"></i></button>
+    <button class="btn-ui" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
 </header>
 
 <main>
     <section class="hero">
-        <h1>Advanced <span>English Lab</span></h1>
-        <p>Selecciona tu nivel de entrenamiento. Los laboratorios se sincronizan en tiempo real con nuestra base de datos de ingeniería lingüística.</p>
+        <div class="purpose-tag">Identity & Fluency Mastery</div>
+        <h1>The <span>English Hub</span> For Professionals</h1>
+        <p>Este es el centro de mando del **Rators Club**. Aquí no solo aprendes inglés; aplicamos ingeniería lingüística para que domines la fluidez de forma estratégica, desde niveles base hasta certificaciones de élite.</p>
     </section>
 
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="filterLevel('All', this)">All Labs</button>
-        <button class="tab-btn" onclick="filterLevel('Basic', this)">Basic</button>
-        <button class="tab-btn" onclick="filterLevel('Intermediate', this)">Intermediate</button>
-        <button class="tab-btn" onclick="filterLevel('Advanced', this)">Advanced</button>
+    <div class="tabs-hub">
+        <button class="tab-trigger active" onclick="loadContent('Basic', this)">Basic</button>
+        <button class="tab-trigger" onclick="loadContent('Intermediate', this)">Intermediate</button>
+        <button class="tab-trigger" onclick="loadContent('Advanced', this)">Advanced</button>
     </div>
 
-    <div class="container">
-        <div class="labs-grid" id="labsContainer">
-            <div class="loader-box"><div class="spinner"></div><p>Sincronizando con Rators Database...</p></div>
+    <div class="main-content">
+        <div class="labs-container" id="labsPort">
+            <div class="sys-loader"><div class="sys-spinner"></div><p style="font-weight: 800; letter-spacing: 1px;">Sincronizando con Rators Database...</p></div>
         </div>
     </div>
 </main>
 
 <footer>
-    <div style="font-size: 2rem; font-weight: 800; margin-bottom: 10px;">RATORS<span>CLUB</span></div>
-    <p style="font-weight: 700; color: var(--text-muted);">Teacher Netza Varo | Professional English Coach</p>
-    <div class="license">
+    <div class="footer-brand">RATORS<span>CLUB</span></div>
+    <p style="font-weight: 700; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+        Teacher Netza Varo | Licenciado en Ciencias de la Educación | Especialista en Fluidez B2/C1 y Certificación TOEFL.
+    </p>
+    
+    <div class="contact-grid">
+        <div class="contact-tile">
+            <i class="fab fa-whatsapp"></i>
+            <b>Línea Directa</b>
+            <span>323 111 64 25</span>
+        </div>
+        <div class="contact-tile">
+            <i class="fas fa-envelope-open-text"></i>
+            <b>Contacto Profesional</b>
+            <span>teacher.netza.varo@gmail.com</span>
+        </div>
+        <div class="contact-tile">
+            <i class="fas fa-map-marked-alt"></i>
+            <b>Ubicación</b>
+            <span>Tepic, Nayarit, México</span>
+        </div>
+    </div>
+    
+    <div class="license-text">
         © 2026 RATORS TEAM | ALL RIGHTS RESERVED<br>
         Licensed under GNU GPL v3.0 | by Rators Team
     </div>
 </footer>
 
-<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20tus%20clases%20y%20paquetes." class="wa-float" target="_blank">
+<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20estuve%20revisando%20el%20Rators%20Hub%20y%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20tus%20clases%20y%20paquetes." class="wa-float-btn" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
     /* ========================================
-       ENGINE: DYNAMIC DATA LOADER
+       DYNAMIC ENGINE v4.0: SHEETS INTEGRATION
        ======================================== */
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
-    let allLabs = [];
+    const CSV_SOURCE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
+    let database = [];
 
-    async function fetchLabs() {
+    async function syncSystem() {
         try {
-            const response = await fetch(SHEET_CSV_URL);
-            const data = await response.text();
-            allLabs = parseCSV(data);
-            renderLabs('All');
-        } catch (error) {
-            console.error('Error sincronizando datos:', error);
-            document.getElementById('labsContainer').innerHTML = '<p>Error de conexión con la base de datos.</p>';
+            const res = await fetch(CSV_SOURCE);
+            const raw = await res.text();
+            database = processData(raw);
+            // Default view: Basic
+            loadContent('Basic', document.querySelector('.tab-trigger'));
+        } catch (err) {
+            document.getElementById('labsPort').innerHTML = '<p>System Error: Database connection failed.</p>';
         }
     }
 
-    function parseCSV(csvText) {
-        const lines = csvText.split('\n');
-        const result = [];
-        // Saltamos la cabecera (primera fila)
-        for (let i = 1; i < lines.length; i++) {
-            const currentline = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/); // Regex robusta para comas en CSV
-            if (currentline.length >= 4) {
-                result.push({
-                    level: currentline[0].trim().replace(/"/g, ''),
-                    name: currentline[1].trim().replace(/"/g, ''),
-                    desc: currentline[2].trim().replace(/"/g, ''),
-                    link: currentline[3].trim().replace(/"/g, '')
+    function processData(csv) {
+        const rows = csv.trim().split(/\r?\n/);
+        const clean = [];
+        // Start from 1 to skip CSV headers
+        for (let i = 1; i < rows.length; i++) {
+            if (!rows[i].trim()) continue;
+            const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (cols.length >= 4) {
+                clean.push({
+                    lvl: cols[0].replace(/"/g, '').trim(),
+                    title: cols[1].replace(/"/g, '').trim(),
+                    info: cols[2].replace(/"/g, '').trim(),
+                    url: cols[3].replace(/"/g, '').trim()
                 });
             }
         }
-        return result;
+        return clean;
     }
 
-    function renderLabs(levelFilter) {
-        const container = document.getElementById('labsContainer');
-        container.innerHTML = '';
+    function loadContent(level, btn) {
+        // UI: Toggle Active Class
+        document.querySelectorAll('.tab-trigger').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const port = document.getElementById('labsPort');
+        port.innerHTML = '';
         
-        const filtered = levelFilter === 'All' 
-            ? allLabs 
-            : allLabs.filter(lab => lab.level.toLowerCase() === levelFilter.toLowerCase());
+        // Filter strictly by level
+        const filtered = database.filter(item => item.lvl.toLowerCase() === level.toLowerCase());
 
         if (filtered.length === 0) {
-            container.innerHTML = `<div class="loader-box"><p>No hay laboratorios disponibles en este nivel por ahora.</p></div>`;
+            port.innerHTML = `<div class="sys-loader"><p>No hay laboratorios en el nivel ${level} registrados actualmente.</p></div>`;
             return;
         }
 
-        filtered.forEach(lab => {
+        filtered.forEach((lab, index) => {
             const card = document.createElement('a');
-            card.href = lab.link;
+            card.href = lab.url;
             card.className = 'lab-card';
             card.target = '_blank';
             
-            // Icono dinámico según nivel
-            let iconClass = 'fa-bolt';
-            if(lab.level === 'Basic') iconClass = 'fa-seedling';
-            if(lab.level === 'Advanced') iconClass = 'fa-microchip';
+            // Dynamic Icon Selection
+            let icon = 'fa-bolt';
+            if(level === 'Basic') icon = 'fa-seedling';
+            if(level === 'Advanced') icon = 'fa-microchip';
 
             card.innerHTML = `
                 <div>
-                    <div class="icon-circle"><i class="fas ${iconClass}"></i></div>
-                    <span style="font-size: 0.7rem; font-weight: 800; color: var(--primary); text-transform: uppercase;">${lab.level} Level</span>
-                    <h3>${lab.name}</h3>
-                    <p>${lab.desc}</p>
+                    <div class="icon-box"><i class="fas ${icon}"></i></div>
+                    <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">${lab.lvl} Mastery</span>
+                    <h3>${lab.title}</h3>
+                    <p>${lab.info}</p>
                 </div>
-                <div class="btn-card">Entrar al Lab</div>
+                <div class="btn-card-enter">Acceder al Lab <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-left: 5px;"></i></div>
             `;
-            container.appendChild(card);
+            
+            port.appendChild(card);
+            
+            // Staggered Animation
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 100);
         });
-    }
-
-    function filterLevel(level, btn) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderLabs(level);
     }
 
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
-        const btn = document.getElementById('themeTrigger');
-        btn.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        const icon = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        document.getElementById('themeBtn').innerHTML = icon;
     }
 
-    window.onload = fetchLabs;
+    window.onload = syncSystem;
 </script>
 </body>
 </html>
