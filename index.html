@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club | Elite Command Center</title>
+    <title>Rators Club | Platinum Hub</title>
     
     <link rel="icon" href="https://drive.google.com/thumbnail?id=1Xqx2WYM7wKxc9t28mWNWxXWXatctKzkF&sz=w128" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -11,20 +11,20 @@
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: NAVY PLATINUM ELITE
+           SISTEMA DE DISEÑO: MAUVE-PLATINUM
            ======================================== */
         :root {
-            /* Light Mode (Elegante - No tan brillante) */
-            --bg: #e2e8f0;
-            --surface: rgba(255, 255, 255, 0.7);
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --text-main: #0f172a;
-            --text-muted: #334155;
+            /* Beige Elegante (Mezcla Morado/Gris) */
+            --bg: #dbd7d2; 
+            --surface: rgba(255, 255, 255, 0.5);
+            --header-bg: rgba(219, 215, 210, 0.85);
+            --text-main: #1e1b4b;
+            --text-muted: #475569;
             --primary: #7c3aed; /* Morado Rator */
             --secondary: #0ea5e9; /* Azul Rator */
-            --border: rgba(15, 23, 42, 0.1);
-            --glow: 0 0 30px rgba(124, 58, 237, 0.3);
-            --navy: #0f172a;
+            --border: rgba(30, 27, 75, 0.1);
+            --glow: 0 0 30px rgba(124, 58, 237, 0.4);
+            --navy: #020617;
         }
 
         .dark-mode {
@@ -33,294 +33,376 @@
             --header-bg: rgba(2, 6, 23, 0.9);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --primary: #a78bfa;
+            --secondary: #38bdf8;
             --border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 40px rgba(56, 189, 248, 0.4);
+            --glow: 0 0 40px rgba(56, 189, 248, 0.5);
         }
 
-        /* --- Reset & Base --- */
+        /* --- Global --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); 
-            margin: 0; transition: background 0.6s ease; overflow-x: hidden;
+            margin: 0; transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1); overflow-x: hidden;
         }
 
-        /* Textura Geométrica de Fondo */
-        .bg-texture {
+        /* Textura Geométrica Dinámica */
+        .bg-pattern {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(circle at center, black, transparent 80%);
-            opacity: 0.4;
+                radial-gradient(var(--border) 1.5px, transparent 1.5px),
+                linear-gradient(45deg, transparent 48%, var(--border) 50%, transparent 52%);
+            background-size: 50px 50px, 100px 100px;
+            opacity: 0.3;
         }
 
-        /* --- Header & Navigation --- */
+        /* --- Header --- */
         header {
-            padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center;
-            background: var(--header-bg); backdrop-filter: blur(20px);
-            position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+            background: var(--header-bg); backdrop-filter: blur(25px);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        .header-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; }
-        .logo-box { width: 45px; height: 45px; border: 2.5px solid var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow); background: var(--bg); }
-        .logo-svg { width: 30px; fill: var(--primary); }
-        .brand-text b { font-family: 'Outfit'; font-size: 1.5rem; letter-spacing: 1px; }
+        .header-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; cursor: pointer; }
+        .logo-box { width: 42px; height: 42px; border: 2.5px solid var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow); background: var(--bg); }
+        .logo-svg { width: 28px; fill: var(--primary); }
+        .brand-text b { font-family: 'Outfit'; font-size: 1.4rem; letter-spacing: 1px; }
 
-        .nav-controls { display: flex; gap: 15px; }
-        .btn-icon { background: var(--surface); border: 2px solid var(--border); width: 48px; height: 48px; border-radius: 15px; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .btn-icon:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--glow); }
+        .sidebar-trigger {
+            background: var(--surface); border: 2.5px solid var(--border); width: 50px; height: 50px;
+            border-radius: 16px; cursor: pointer; color: var(--text-main); font-size: 1.3rem; 
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        }
+        .sidebar-trigger:hover { border-color: var(--primary); box-shadow: var(--glow); transform: rotate(90deg); }
 
-        /* --- Sidebar Menu --- */
-        .sidebar { position: fixed; top: 0; right: -100%; width: 350px; height: 100%; background: var(--header-bg); backdrop-filter: blur(30px); z-index: 3000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 4rem 2.5rem; box-shadow: -20px 0 60px rgba(0,0,0,0.4); }
+        /* --- Sidebar (Pestaña de Navegación) --- */
+        .sidebar { 
+            position: fixed; top: 0; right: -100%; width: 380px; height: 100%; 
+            background: var(--header-bg); backdrop-filter: blur(40px); z-index: 3000; 
+            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); padding: 4rem 2rem; 
+            box-shadow: -20px 0 80px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+        }
         .sidebar.active { right: 0; }
-        .side-link { width: 100%; padding: 18px; margin-bottom: 12px; border: 2.5px solid var(--border); border-radius: 20px; background: transparent; color: var(--text-main); font-weight: 800; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.3s; text-decoration: none; }
-        .side-link:hover { border-color: var(--secondary); background: rgba(14, 165, 233, 0.1); transform: scale(1.02); }
-
-        /* --- Main Content Layout --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
         
-        /* Home Hero */
+        .side-title { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin: 2rem 0 1rem 10px; }
+        
+        .side-btn { 
+            width: 100%; padding: 18px; margin-bottom: 12px; border: 2.5px solid var(--border); border-radius: 20px; 
+            background: transparent; color: var(--text-main); font-weight: 800; text-align: left; 
+            cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.3s; text-decoration: none; 
+        }
+        .side-btn:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.1); transform: translateX(-5px); }
+        .side-btn i { width: 25px; color: var(--primary); font-size: 1.2rem; }
+
+        /* Dark Mode Switch en Sidebar */
+        .theme-switch-container {
+            margin-top: auto; padding: 20px; background: rgba(0,0,0,0.05); border-radius: 25px;
+            display: flex; justify-content: space-between; align-items: center; border: 2px solid var(--border);
+        }
+        .switch { position: relative; width: 60px; height: 32px; cursor: pointer; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #cbd5e1; border-radius: 34px; transition: 0.4s; }
+        .slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.4s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        input:checked + .slider { background: var(--primary); }
+        input:checked + .slider:before { transform: translateX(28px); }
+
+        /* --- Layout --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        /* Home State */
         #home-view { display: block; animation: fadeIn 0.8s ease; }
-        .hero { text-align: center; margin-bottom: 5rem; }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; margin: 0; letter-spacing: -3px; }
-        .hero h1 span { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(var(--glow)); }
-        .hero p { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin: 25px auto; line-height: 1.6; }
+        .hero { text-align: center; margin-bottom: 6rem; }
+        .hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: 800; margin: 0; letter-spacing: -3px; line-height: 0.9; }
+        .hero h1 span { color: var(--primary); text-shadow: var(--glow); }
+        .hero p { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; margin: 30px auto; font-weight: 500; }
 
-        /* Category Cards (Home) */
-        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .cat-card {
-            background: var(--surface); backdrop-filter: blur(15px); border: 2.5px solid var(--border); border-radius: 45px;
-            padding: 4rem 3rem; text-align: center; cursor: pointer; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden;
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
+        .category-card {
+            background: var(--surface); backdrop-filter: blur(20px); border: 2.5px solid var(--border); 
+            border-radius: 50px; padding: 5rem 3rem; text-align: center; cursor: pointer; 
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
         }
-        .cat-card:hover { transform: translateY(-15px); border-color: var(--secondary); box-shadow: var(--glow); }
-        .cat-card i { font-size: 3.5rem; color: var(--secondary); margin-bottom: 25px; display: block; transition: 0.4s; }
-        .cat-card:hover i { transform: scale(1.2) rotate(-5deg); color: var(--primary); }
-        .cat-card h2 { font-size: 2rem; margin: 0 0 10px; font-family: 'Outfit'; }
-        .cat-card span { font-weight: 800; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; }
+        .category-card:hover { transform: translateY(-20px) scale(1.02); border-color: var(--secondary); box-shadow: var(--glow); }
+        .category-card i { font-size: 4.5rem; color: var(--secondary); margin-bottom: 30px; display: block; transition: 0.5s; }
+        .category-card:hover i { transform: scale(1.2) rotate(-10deg); color: var(--primary); }
+        .category-card h2 { font-size: 2.2rem; margin: 0; font-family: 'Outfit'; }
+        .category-card span { font-weight: 800; color: var(--text-muted); letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; }
 
-        /* --- Labs View (Dynamic) --- */
+        /* Labs View State (Roll-Up) */
         #labs-view { display: none; }
-        .view-header { display: flex; align-items: center; gap: 20px; margin-bottom: 4rem; }
-        .btn-back { background: var(--navy); color: white; border: none; padding: 12px 25px; border-radius: 15px; cursor: pointer; font-weight: 800; transition: 0.3s; }
-        .btn-back:hover { background: var(--primary); transform: translateX(-5px); }
+        .view-header { display: flex; align-items: center; gap: 30px; margin-bottom: 5rem; }
+        .btn-back { background: var(--navy); color: white; border: none; padding: 15px 30px; border-radius: 18px; cursor: pointer; font-weight: 800; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .btn-back:hover { background: var(--primary); transform: translateX(-10px); }
 
-        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 35px; }
+        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 35px; }
         .lab-card { 
-            background: var(--surface); backdrop-filter: blur(15px); border: 2px solid var(--border); border-radius: 35px; 
-            padding: 3rem; transition: 0.4s; opacity: 0; transform: translateY(40px); text-decoration: none; color: inherit;
+            background: var(--surface); backdrop-filter: blur(20px); border: 2.5px solid var(--border); border-radius: 40px; 
+            padding: 3.5rem; transition: 0.5s; opacity: 0; transform: translateY(100px); text-decoration: none; color: inherit;
         }
-        .lab-card.roll-up { animation: rollUp 0.6s forwards; }
+        .lab-card.roll-up { animation: rollUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes rollUp { to { opacity: 1; transform: translateY(0); } }
-        .lab-card:hover { border-color: var(--primary); box-shadow: var(--glow); transform: scale(1.03); }
+        .lab-card:hover { border-color: var(--primary); transform: scale(1.03); box-shadow: var(--glow); }
+        .lab-card h3 { font-size: 1.8rem; margin: 0 0 15px; font-family: 'Outfit'; }
+        .lab-card p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; }
 
-        /* --- Footer & Info --- */
-        footer { padding: 8rem 2rem 5rem; border-top: 2px solid var(--border); margin-top: 10rem; text-align: center; background: var(--surface); backdrop-filter: blur(10px); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; max-width: 1100px; margin: 50px auto; }
-        .info-block { padding: 30px; border-radius: 30px; background: rgba(0,0,0,0.03); }
-        .info-block i { font-size: 2rem; color: var(--primary); margin-bottom: 15px; display: block; }
+        /* Sections (About/Contact) */
+        .section-view { display: none; animation: fadeIn 0.8s ease; }
+        .content-card { 
+            background: var(--surface); border: 3px solid var(--primary); border-radius: 50px; 
+            padding: 5rem; max-width: 900px; margin: 0 auto; backdrop-filter: blur(20px);
+        }
 
-        /* WhatsApp Bubble */
-        .wa-action { position: fixed; bottom: 40px; right: 40px; background: #25d366; color: white; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; z-index: 4000; box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.4s; }
-        .wa-action:hover { transform: scale(1.1) rotate(10deg); }
+        /* --- Footer --- */
+        footer { padding: 10rem 2rem 5rem; border-top: 2.5px solid var(--border); margin-top: 10rem; text-align: center; background: var(--surface); }
+        .footer-brand { font-size: 2.5rem; font-weight: 800; font-family: 'Outfit'; margin-bottom: 2rem; }
+        .footer-brand span { color: var(--primary); }
+        
+        .footer-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .footer-tile i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        .footer-tile b { font-size: 1.4rem; display: block; margin-bottom: 10px; }
+        
+        /* WhatsApp (Fixed Left) */
+        .wa-float { 
+            position: fixed; bottom: 40px; left: 40px; background: #25d366; color: white; 
+            width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 40px; z-index: 4000; 
+            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.4s; 
+        }
+        .wa-float:hover { transform: scale(1.15) rotate(-15deg); box-shadow: 0 25px 60px rgba(37, 211, 102, 0.6); }
 
-        /* Transitions */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            .sidebar { width: 100%; }
+            .content-card { padding: 3rem 1.5rem; }
+            .category-card { padding: 3rem 1.5rem; }
+            .wa-float { width: 65px; height: 65px; bottom: 20px; left: 20px; font-size: 30px; }
+        }
     </style>
 </head>
-<body>
+<body onclick="unlockAudio()">
 
-<div class="bg-texture"></div>
+<div class="bg-pattern"></div>
 
 <header>
-    <a href="#" class="header-brand" onclick="showHome()">
+    <div class="header-brand" onclick="showHome()">
         <div class="logo-box">
             <svg class="logo-svg" viewBox="0 0 100 100">
                 <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="6"/>
                 <path d="M45 35 Q50 15 55 35 Q60 15 65 35" fill="#ef4444"/>
             </svg>
         </div>
-        <div class="brand-text">
-            <b>RATORS CLUB</b>
-        </div>
-    </a>
-    <div class="nav-controls">
-        <button class="btn-icon" onclick="toggleTheme()" id="themeTrigger"><i class="fas fa-moon"></i></button>
-        <button class="btn-icon" onclick="toggleSidebar()"><i class="fas fa-th-large"></i></button>
+        <div class="brand-text"><b>RATORS CLUB</b></div>
     </div>
+    <button class="sidebar-trigger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 </header>
 
 <div class="sidebar" id="sidebar">
-    <h2 style="font-family: 'Outfit'; margin-bottom: 2rem;">Terminal Menu</h2>
-    <button class="side-link" onclick="showSection('about')"><i class="fas fa-id-badge"></i> ACERCA DE</button>
-    <button class="side-link" onclick="showSection('contact')"><i class="fas fa-paper-plane"></i> CLASES PERSONALES</button>
-    <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
-    <p style="font-size: 0.7rem; font-weight: 800; opacity: 0.5; margin-bottom: 1rem;">FILTRAR LABORATORIOS</p>
-    <button class="side-link" onclick="openLevel('Basic')"><i class="fas fa-seedling"></i> BASIC LABS</button>
-    <button class="side-link" onclick="openLevel('Intermediate')"><i class="fas fa-bolt"></i> INTERMEDIATE LABS</button>
-    <button class="side-link" onclick="openLevel('Advanced')"><i class="fas fa-microchip"></i> ADVANCED LABS</button>
-    <button class="side-link" style="margin-top: 2rem; background: var(--navy); color: white;" onclick="toggleSidebar()">CERRAR PANEL</button>
+    <button style="background:none; border:none; font-size:2rem; align-self:flex-end; color:var(--text-main); cursor:pointer;" onclick="toggleSidebar()">✕</button>
+    
+    <p class="side-title">EXPLORAR</p>
+    <button class="side-btn" onclick="showSection('about')"><i class="fas fa-info-circle"></i> ACERCA DEL HUB</button>
+    <button class="side-btn" onclick="showSection('contact')"><i class="fas fa-chalkboard-teacher"></i> CLASES PERSONALES</button>
+    
+    <p class="side-title">LABORATORIOS</p>
+    <button class="side-btn" onclick="openLevel('Basic')"><i class="fas fa-seedling"></i> NIVEL BÁSICO</button>
+    <button class="side-btn" onclick="openLevel('Intermediate')"><i class="fas fa-bolt"></i> NIVEL INTERMEDIO</button>
+    <button class="side-btn" onclick="openLevel('Advanced')"><i class="fas fa-microchip"></i> NIVEL AVANZADO</button>
+
+    <div class="theme-switch-container">
+        <span style="font-weight: 800; font-size: 0.8rem; letter-spacing: 1px;">DARK MODE</span>
+        <label class="switch">
+            <input type="checkbox" id="themeInput" onchange="toggleTheme()">
+            <span class="slider"></span>
+        </label>
+    </div>
 </div>
 
 <div class="container">
     
     <section id="home-view">
         <div class="hero">
-            <h1>Engineering <span>Fluency</span></h1>
-            <p>Bienvenido al **Rators Club Hub**. Este es un centro de mando diseñado para desglosar el inglés mediante ingeniería lingüística. Aquí no solo estudias; construyes tu propia fluidez de forma técnica y profesional.</p>
+            <h1>Identity <span>Engineering</span></h1>
+            <p>Bienvenido a la terminal del **Rators Club**. Aquí aplicamos ingeniería lingüística para desglosar el inglés y construir tu fluidez desde la base hasta la maestría profesional.</p>
         </div>
 
         <div class="category-grid">
-            <div class="cat-card" onclick="openLevel('Basic')">
+            <div class="category-card" onclick="openLevel('Basic')">
                 <i class="fas fa-seedling"></i>
-                <span>LEVEL 01</span>
+                <span>Foundation</span>
                 <h2>BASIC</h2>
-                <p>Cimientos gramaticales y estructuras esenciales.</p>
+                <p>Cimientos estructurales y gramática esencial para el día a día.</p>
             </div>
-            <div class="cat-card" onclick="openLevel('Intermediate')">
+            <div class="category-card" onclick="openLevel('Intermediate')">
                 <i class="fas fa-bolt"></i>
-                <span>LEVEL 02</span>
+                <span>Acceleration</span>
                 <h2>INTERMEDIATE</h2>
-                <p>Fluidez, conectores avanzados y comunicación real.</p>
+                <p>Fluidez avanzada, conectores y comunicación técnica fluida.</p>
             </div>
-            <div class="cat-card" onclick="openLevel('Advanced')">
+            <div class="category-card" onclick="openLevel('Advanced')">
                 <i class="fas fa-microchip"></i>
-                <span>LEVEL 03</span>
+                <span>Mastery</span>
                 <h2>ADVANCED</h2>
-                <p>Perfeccionamiento, TOEFL y oratoria profesional.</p>
+                <p>Certificación TOEFL, oratoria y perfeccionamiento de élite.</p>
             </div>
         </div>
     </section>
 
     <section id="labs-view">
         <div class="view-header">
-            <button class="btn-back" onclick="showHome()"><i class="fas fa-arrow-left"></i> VOLVER</button>
-            <h1 id="lvl-title" style="margin:0;">Basic Labs</h1>
+            <button class="btn-back" onclick="showHome()"><i class="fas fa-chevron-left"></i> VOLVER</button>
+            <h1 id="lvl-title" style="margin:0; font-family:'Outfit';">Labs</h1>
         </div>
-        <div class="labs-grid" id="labsContainer">
+        <div class="labs-grid" id="labsPort">
             </div>
     </section>
 
-    <section id="about-section" style="display:none;" class="section-card">
-        <div class="cat-card" style="text-align: left; cursor: default;">
-            <h1>Acerca del Hub</h1>
-            <p>El Rators Club es el resultado de 7 años de experiencia de **Teacher Netza Varo** en el campo de la educación. Este Hub centraliza recursos interactivos creados para optimizar la retención de conocimientos mediante gamificación y diseño de interfaces.</p>
-            <p><strong>Filosofía:</strong> El inglés no es un fin, es una herramienta técnica para abrir puertas globales.</p>
+    <section id="about-view" class="section-view">
+        <div class="content-card">
+            <h1 style="font-family:'Outfit';">Acerca del Hub</h1>
+            <p style="font-size:1.2rem; line-height:1.8;">El **Rators Hub** es un ecosistema educativo diseñado por el **Teacher Netza Varo**. Tras 7 años de experiencia, hemos creado esta plataforma para que los alumnos dejen de "estudiar" y empiecen a "diseñar" su propio inglés.</p>
+            <p style="font-size:1.2rem;">Utilizamos metodologías de gamificación y visualización de datos para que la gramática sea lógica, no memorística.</p>
+            <button class="side-btn" style="margin-top:30px; background:var(--primary); color:white; justify-content:center;" onclick="showHome()">VOLVER AL INICIO</button>
         </div>
     </section>
 
-    <section id="contact-section" style="display:none;">
-        <div class="cat-card" style="text-align: left; cursor: default; border-color: var(--secondary);">
-            <h1>Clases Personales Online</h1>
-            <p>¿Buscas una preparación intensiva para **TOEFL** o mejorar tu fluidez para el trabajo? Ofrezco asesorías personalizadas uno a uno.</p>
-            <ul style="font-weight: 700; line-height: 2;">
-                <li>Entrenamiento de pronunciación (Schwa & Flapping).</li>
-                <li>Estrategias de examen de certificación.</li>
-                <li>Inglés técnico para profesionales.</li>
+    <section id="contact-view" class="section-view">
+        <div class="content-card" style="border-color: var(--secondary);">
+            <h1 style="font-family:'Outfit';">Clases Personales Online</h1>
+            <p style="font-size:1.2rem;">¿Necesitas resultados inmediatos? Ofrecemos sesiones personalizadas enfocadas en:</p>
+            <ul style="font-weight:700; font-size:1.1rem; line-height:2.5; margin:20px 0;">
+                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Entrenamiento intensivo para TOEFL.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Reducción de acento y fluidez ejecutiva.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Preparación para entrevistas de trabajo en IT/Ingeniería.</li>
             </ul>
-            <a href="https://wa.me/523231116425" class="side-link" style="background: var(--secondary); color: white; justify-content: center; margin-top: 2rem;">AGENDAR ASESORÍA <i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/523231116425" class="side-btn" style="background:var(--secondary); color:white; justify-content:center; margin-top:30px;">SOLICITAR INFORMACIÓN <i class="fab fa-whatsapp"></i></a>
         </div>
     </section>
 
 </div>
 
 <footer>
-    <div style="font-size: 2.2rem; font-weight: 800; font-family: 'Outfit';">RATORS<span>CLUB</span></div>
-    <div class="footer-grid">
-        <div class="info-block">
-            <i class="fas fa-user-tie"></i>
+    <div class="footer-brand">RATORS<span>CLUB</span></div>
+    <div class="footer-info">
+        <div class="footer-tile">
+            <i class="fas fa-user-graduate"></i>
             <b>Teacher Netza Varo</b>
             <p>Lic. en Educación | English Coach</p>
         </div>
-        <div class="info-block">
-            <i class="fas fa-envelope"></i>
-            <b>Email Profesional</b>
+        <div class="footer-tile">
+            <i class="fas fa-envelope-open"></i>
+            <b>Email</b>
             <p>teacher.netza.varo@gmail.com</p>
         </div>
-        <div class="info-block">
-            <i class="fas fa-map-pin"></i>
-            <b>Ubicación</b>
+        <div class="footer-tile">
+            <i class="fas fa-map-marked-alt"></i>
+            <b>Location</b>
             <p>Tepic, Nayarit, México</p>
         </div>
     </div>
-    <div style="opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px;">© 2026 RATORS TEAM | GNU GPL v3.0 | BY RATORS TEAM</div>
+    <div style="margin-top:6rem; opacity:0.3; font-size:0.75rem; font-weight:800; letter-spacing:3px;">
+        GNU GPL v3.0 | PLATINUM EDITION 2026 | BY RATORS TEAM
+    </div>
 </footer>
 
-<a href="https://wa.me/523231116425" class="wa-action" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20vengo%20del%20Hub%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20tus%20clases." class="wa-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <script>
     /* ========================================
-       ENGINE: RATORS DYNAMIC SYNC
+       ENGINE: RATORS DYNAMIC SYNC v6.0
        ======================================== */
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
-    let rawData = [];
+    const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
+    let labDatabase = [];
 
-    async function init() {
+    async function syncData() {
         try {
-            const res = await fetch(CSV_URL);
-            const text = await res.text();
-            rawData = parseCSV(text);
-        } catch (e) { console.error("Database offline."); }
+            const r = await fetch(SHEETS_URL);
+            const t = await r.text();
+            labDatabase = parseCSV(t);
+        } catch (e) { console.error("Sync Failed."); }
     }
 
     function parseCSV(csv) {
         const rows = csv.trim().split(/\r?\n/);
-        const list = [];
+        const data = [];
         for(let i=1; i<rows.length; i++) {
             const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if(cols.length >= 4) {
-                list.push({ lvl: cols[0].replace(/"/g,''), title: cols[1].replace(/"/g,''), desc: cols[2].replace(/"/g,''), url: cols[3].replace(/"/g,'') });
+                data.push({
+                    lvl: cols[0].replace(/"/g,'').trim(),
+                    name: cols[1].replace(/"/g,'').trim(),
+                    info: cols[2].replace(/"/g,'').trim(),
+                    link: cols[3].replace(/"/g,'').trim()
+                });
             }
         }
-        return list;
+        return data;
     }
 
     function openLevel(lvl) {
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('about-section').style.display = 'none';
-        document.getElementById('contact-section').style.display = 'none';
-        const labsView = document.getElementById('labs-view');
-        labsView.style.display = 'block';
+        // Hide all
+        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+        const view = document.getElementById('labs-view');
+        view.style.display = 'block';
         document.getElementById('lvl-title').innerText = lvl + " Labs";
         
-        const container = document.getElementById('labsContainer');
-        container.innerHTML = '';
+        const port = document.getElementById('labsPort');
+        port.innerHTML = '';
         
-        const filtered = rawData.filter(d => d.lvl.toLowerCase() === lvl.toLowerCase());
-        filtered.forEach((lab, i) => {
+        const filtered = labDatabase.filter(d => d.lvl.toLowerCase() === lvl.toLowerCase());
+        
+        filtered.forEach((item, i) => {
             const card = document.createElement('a');
-            card.href = lab.url; card.target = '_blank'; card.className = 'lab-card';
-            card.innerHTML = `<h3>${lab.title}</h3><p>${lab.desc}</p><div style="font-weight:800; color:var(--primary);">ENTRAR AL LAB →</div>`;
-            container.appendChild(card);
-            setTimeout(() => card.classList.add('roll-up'), i * 100);
+            card.href = item.link; card.target = '_blank'; card.className = 'lab-card';
+            card.innerHTML = `
+                <span style="font-weight:800; color:var(--primary); font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">${lvl} Session</span>
+                <h3>${item.name}</h3>
+                <p>${item.info}</p>
+                <div style="font-weight:800; color:var(--secondary); font-size:0.8rem;">LAUNCH LAB →</div>
+            `;
+            port.appendChild(card);
+            // Roll-up animation with delay
+            setTimeout(() => card.classList.add('roll-up'), i * 120);
         });
+
         if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
         window.scrollTo(0,0);
     }
 
     function showHome() {
-        document.getElementById('labs-view').style.display = 'none';
-        document.getElementById('about-section').style.display = 'none';
-        document.getElementById('contact-section').style.display = 'none';
+        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
         document.getElementById('home-view').style.display = 'block';
         window.scrollTo(0,0);
     }
 
-    function showSection(sec) {
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('labs-view').style.display = 'none';
-        document.getElementById(sec + '-section').style.display = 'block';
+    function showSection(id) {
+        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+        document.getElementById(id + '-view').style.display = 'block';
         toggleSidebar();
+        window.scrollTo(0,0);
     }
 
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-    function toggleTheme() { 
-        document.body.classList.toggle('dark-mode'); 
-        document.getElementById('themeTrigger').innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('rators-theme', isDark ? 'dark' : 'light');
     }
 
-    window.onload = init;
+    function unlockAudio() { window.speechSynthesis.speak(new SpeechSynthesisUtterance("")); }
+
+    window.onload = () => {
+        syncData();
+        const saved = localStorage.getItem('rators-theme');
+        if(saved === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeInput').checked = true;
+        }
+    };
 </script>
 </body>
 </html>
