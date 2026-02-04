@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club | Platinum Hub</title>
+    <title>Rators Club | Elite Command Center</title>
     
     <link rel="icon" href="https://drive.google.com/thumbnail?id=1Xqx2WYM7wKxc9t28mWNWxXWXatctKzkF&sz=w128" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -11,173 +11,173 @@
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: MAUVE-PLATINUM
+           SISTEMA DE DISEÑO: PLATINUM WHITE
            ======================================== */
         :root {
-            /* Beige Elegante (Mezcla Morado/Gris) */
-            --bg: #ffffff; 
-            --surface: rgba(255, 255, 255, 0.5);
-            --header-bg: rgba(255, 255, 255, 0.85);
+            --bg: #ffffff; /* Fondo Blanco Puro */
+            --surface: #f8fafc; /* Gris ultra-ligero para tarjetas */
+            --header-bg: rgba(255, 255, 255, 0.92);
             --text-main: #1e1b4b;
             --text-muted: #475569;
             --primary: #7c3aed; /* Morado Rator */
             --secondary: #0ea5e9; /* Azul Rator */
-            --border: rgba(30, 27, 75, 0.1);
-            --glow: 0 0 30px rgba(124, 58, 237, 0.4);
+            --border: rgba(30, 27, 75, 0.08);
+            --glow: 0 0 30px rgba(124, 58, 237, 0.3);
             --navy: #020617;
         }
 
         .dark-mode {
-            --bg: #020617; /* Navy Blue Profundo */
+            --bg: #020617; 
             --surface: rgba(15, 23, 42, 0.6);
-            --header-bg: rgba(2, 6, 23, 0.9);
+            --header-bg: rgba(2, 6, 23, 0.92);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --primary: #a78bfa;
             --secondary: #38bdf8;
             --border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 40px rgba(56, 189, 248, 0.5);
+            --glow: 0 0 40px rgba(56, 189, 248, 0.4);
         }
 
-        /* --- Global --- */
+        /* --- Global Reset (Anti-Overflow) --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html, body { 
+            margin: 0; padding: 0; width: 100%; 
+            overflow-x: hidden; /* Evita el scroll horizontal */
+        }
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); 
-            margin: 0; transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1); overflow-x: hidden;
+            transition: background 0.6s ease; line-height: 1.6;
         }
 
-        /* Textura Geométrica Dinámica */
         .bg-pattern {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: 
-                radial-gradient(var(--border) 1.5px, transparent 1.5px),
-                linear-gradient(45deg, transparent 48%, var(--border) 50%, transparent 52%);
-            background-size: 50px 50px, 100px 100px;
-            opacity: 0.3;
+            background-image: radial-gradient(var(--border) 1.2px, transparent 1.2px);
+            background-size: 40px 40px; opacity: 0.2;
         }
 
         /* --- Header --- */
         header {
-            padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
-            background: var(--header-bg); backdrop-filter: blur(25px);
+            padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+            background: var(--header-bg); backdrop-filter: blur(20px);
             position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--primary);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
-        .header-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; cursor: pointer; }
-        .logo-box { width: 42px; height: 42px; border: 2.5px solid var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: var(--glow); background: var(--bg); }
-        .logo-svg { width: 28px; fill: var(--primary); }
-        .brand-text b { font-family: 'Outfit'; font-size: 1.4rem; letter-spacing: 1px; }
+        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; cursor: pointer; }
+        .logo-box { width: 38px; height: 38px; border: 2px solid var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--bg); box-shadow: var(--glow); }
+        .logo-svg { width: 24px; fill: var(--primary); }
+        .brand-text b { font-family: 'Outfit'; font-size: 1.2rem; letter-spacing: 0.5px; }
 
         .sidebar-trigger {
-            background: var(--surface); border: 2.5px solid var(--border); width: 50px; height: 50px;
-            border-radius: 16px; cursor: pointer; color: var(--text-main); font-size: 1.3rem; 
+            background: var(--surface); border: 2px solid var(--border); width: 44px; height: 44px;
+            border-radius: 12px; cursor: pointer; color: var(--text-main); font-size: 1.1rem; 
             display: flex; align-items: center; justify-content: center; transition: 0.3s;
         }
-        .sidebar-trigger:hover { border-color: var(--primary); box-shadow: var(--glow); transform: rotate(90deg); }
 
         /* --- Sidebar (Pestaña de Navegación) --- */
         .sidebar { 
-            position: fixed; top: 0; right: -100%; width: 380px; height: 100%; 
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 380px; height: 100%; 
             background: var(--header-bg); backdrop-filter: blur(40px); z-index: 3000; 
-            transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); padding: 4rem 2rem; 
-            box-shadow: -20px 0 80px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 3rem 1.5rem; 
+            box-shadow: -10px 0 50px rgba(0,0,0,0.2); display: flex; flex-direction: column;
         }
         .sidebar.active { right: 0; }
         
-        .side-title { font-size: 0.75rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin: 2rem 0 1rem 10px; }
-        
         .side-btn { 
-            width: 100%; padding: 18px; margin-bottom: 12px; border: 2.5px solid var(--border); border-radius: 20px; 
-            background: transparent; color: var(--text-main); font-weight: 800; text-align: left; 
-            cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.3s; text-decoration: none; 
+            width: 100%; padding: 16px; margin-bottom: 10px; border: 2px solid var(--border); border-radius: 18px; 
+            background: var(--bg); color: var(--text-main); font-weight: 800; text-align: left; 
+            cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; text-decoration: none; 
         }
-        .side-btn:hover { border-color: var(--primary); background: rgba(124, 58, 237, 0.1); transform: translateX(-5px); }
-        .side-btn i { width: 25px; color: var(--primary); font-size: 1.2rem; }
+        .side-btn:hover { border-color: var(--primary); transform: translateX(-5px); }
 
-        /* Dark Mode Switch en Sidebar */
         .theme-switch-container {
-            margin-top: auto; padding: 20px; background: rgba(0,0,0,0.05); border-radius: 25px;
-            display: flex; justify-content: space-between; align-items: center; border: 2px solid var(--border);
+            margin-top: auto; padding: 20px; background: rgba(0,0,0,0.03); border-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center; border: 1.5px solid var(--border);
         }
-        .switch { position: relative; width: 60px; height: 32px; cursor: pointer; }
+        .switch { position: relative; width: 50px; height: 28px; cursor: pointer; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #cbd5e1; border-radius: 34px; transition: 0.4s; }
-        .slider:before { position: absolute; content: ""; height: 24px; width: 24px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.4s; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.4s; }
         input:checked + .slider { background: var(--primary); }
-        input:checked + .slider:before { transform: translateX(28px); }
+        input:checked + .slider:before { transform: translateX(22px); }
 
-        /* --- Layout --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+        /* --- Layout Principal --- */
+        .container { 
+            width: 100%; max-width: 1200px; margin: 0 auto; 
+            padding: 2rem 1rem; /* Padding ajustado para móvil */
+        }
         
-        /* Home State */
-        #home-view { display: block; animation: fadeIn 0.8s ease; }
-        .hero { text-align: center; margin-bottom: 6rem; }
-        .hero h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: 800; margin: 0; letter-spacing: -3px; line-height: 0.9; }
+        #home-view { animation: fadeIn 0.8s ease; }
+        .hero { text-align: center; margin: 3rem 0 4rem; padding: 0 10px; }
+        .hero h1 { font-size: clamp(2.2rem, 9vw, 5rem); font-weight: 800; margin: 0; letter-spacing: -2px; }
         .hero h1 span { color: var(--primary); text-shadow: var(--glow); }
-        .hero p { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; margin: 30px auto; font-weight: 500; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 20px auto; }
 
-        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
+        /* Grid de Categorías (Optimizado Móvil) */
+        .category-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
         .category-card {
-            background: var(--surface); backdrop-filter: blur(20px); border: 2.5px solid var(--border); 
-            border-radius: 50px; padding: 5rem 3rem; text-align: center; cursor: pointer; 
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1); position: relative;
+            background: var(--surface); border: 2px solid var(--border); 
+            border-radius: 35px; padding: 3rem 1.5rem; text-align: center; cursor: pointer; 
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
-        .category-card:hover { transform: translateY(-20px) scale(1.02); border-color: var(--secondary); box-shadow: var(--glow); }
-        .category-card i { font-size: 4.5rem; color: var(--secondary); margin-bottom: 30px; display: block; transition: 0.5s; }
-        .category-card:hover i { transform: scale(1.2) rotate(-10deg); color: var(--primary); }
-        .category-card h2 { font-size: 2.2rem; margin: 0; font-family: 'Outfit'; }
-        .category-card span { font-weight: 800; color: var(--text-muted); letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; }
+        .category-card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: var(--glow); }
+        .category-card i { font-size: 3.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
+        .category-card h2 { font-size: 1.8rem; margin: 0; font-family: 'Outfit'; }
 
-        /* Labs View State (Roll-Up) */
+        /* Labs View (Roll-Up) */
         #labs-view { display: none; }
-        .view-header { display: flex; align-items: center; gap: 30px; margin-bottom: 5rem; }
-        .btn-back { background: var(--navy); color: white; border: none; padding: 15px 30px; border-radius: 18px; cursor: pointer; font-weight: 800; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-        .btn-back:hover { background: var(--primary); transform: translateX(-10px); }
-
-        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 35px; }
+        .view-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 3rem; }
+        .btn-back { background: var(--navy); color: white; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.9rem; }
+        
+        .labs-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
         .lab-card { 
-            background: var(--surface); backdrop-filter: blur(20px); border: 2.5px solid var(--border); border-radius: 40px; 
-            padding: 3.5rem; transition: 0.5s; opacity: 0; transform: translateY(100px); text-decoration: none; color: inherit;
+            background: var(--surface); border: 1.5px solid var(--border); border-radius: 30px; 
+            padding: 2.5rem 1.5rem; transition: 0.4s; opacity: 0; transform: translateY(50px); 
+            text-decoration: none; color: inherit; display: block;
         }
-        .lab-card.roll-up { animation: rollUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .lab-card.roll-up { animation: rollUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes rollUp { to { opacity: 1; transform: translateY(0); } }
-        .lab-card:hover { border-color: var(--primary); transform: scale(1.03); box-shadow: var(--glow); }
-        .lab-card h3 { font-size: 1.8rem; margin: 0 0 15px; font-family: 'Outfit'; }
-        .lab-card p { color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; }
-
-        /* Sections (About/Contact) */
-        .section-view { display: none; animation: fadeIn 0.8s ease; }
-        .content-card { 
-            background: var(--surface); border: 3px solid var(--primary); border-radius: 50px; 
-            padding: 5rem; max-width: 900px; margin: 0 auto; backdrop-filter: blur(20px);
-        }
+        .lab-card:hover { border-color: var(--primary); transform: scale(1.02); box-shadow: var(--glow); }
 
         /* --- Footer --- */
-        footer { padding: 10rem 2rem 5rem; border-top: 2.5px solid var(--border); margin-top: 10rem; text-align: center; background: var(--surface); }
-        .footer-brand { font-size: 2.5rem; font-weight: 800; font-family: 'Outfit'; margin-bottom: 2rem; }
-        .footer-brand span { color: var(--primary); }
-        
-        .footer-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
-        .footer-tile i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
-        .footer-tile b { font-size: 1.4rem; display: block; margin-bottom: 10px; }
-        
-        /* WhatsApp (Fixed Left) */
+        footer { padding: 6rem 1.5rem 4rem; border-top: 1px solid var(--border); margin-top: 6rem; text-align: center; background: var(--surface); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .footer-tile { padding: 20px; }
+        .footer-tile i { font-size: 2rem; color: var(--secondary); margin-bottom: 10px; display: block; }
+
+        /* WhatsApp (Fixed Left - Optimized) */
         .wa-float { 
-            position: fixed; bottom: 40px; left: 40px; background: #25d366; color: white; 
-            width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; font-size: 40px; z-index: 4000; 
-            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.4s; 
+            position: fixed; bottom: 25px; left: 25px; background: #25d366; color: white; 
+            width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 30px; z-index: 4000; 
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.3s; 
         }
-        .wa-float:hover { transform: scale(1.15) rotate(-15deg); box-shadow: 0 25px 60px rgba(37, 211, 102, 0.6); }
+        .wa-float:hover { transform: scale(1.1) rotate(-10deg); }
+
+        /* Secciones About/Contact */
+        .section-view { display: none; animation: fadeIn 0.5s ease; }
+        .content-card { 
+            background: var(--bg); border: 2.5px solid var(--primary); border-radius: 35px; 
+            padding: 3rem 1.5rem; box-shadow: var(--glow);
+        }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .sidebar { width: 100%; }
-            .content-card { padding: 3rem 1.5rem; }
-            .category-card { padding: 3rem 1.5rem; }
-            .wa-float { width: 65px; height: 65px; bottom: 20px; left: 20px; font-size: 30px; }
+        /* Ajustes específicos para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            .category-card { padding: 2.5rem 1rem; }
+            .content-card { padding: 2rem 1rem; }
         }
     </style>
 </head>
@@ -189,7 +189,7 @@
     <div class="header-brand" onclick="showHome()">
         <div class="logo-box">
             <svg class="logo-svg" viewBox="0 0 100 100">
-                <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="6"/>
+                <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="5"/>
                 <path d="M45 35 Q50 15 55 35 Q60 15 65 35" fill="#ef4444"/>
             </svg>
         </div>
@@ -199,19 +199,20 @@
 </header>
 
 <div class="sidebar" id="sidebar">
-    <button style="background:none; border:none; font-size:2rem; align-self:flex-end; color:var(--text-main); cursor:pointer;" onclick="toggleSidebar()">✕</button>
+    <button style="background:none; border:none; font-size:1.8rem; align-self:flex-end; color:var(--text-main); margin-bottom:1rem;" onclick="toggleSidebar()">✕</button>
     
-    <p class="side-title">EXPLORAR</p>
-    <button class="side-btn" onclick="showSection('about')"><i class="fas fa-info-circle"></i> ACERCA DEL HUB</button>
+    <button class="side-btn" onclick="showSection('about')"><i class="fas fa-info-circle"></i> ACERCA DE</button>
     <button class="side-btn" onclick="showSection('contact')"><i class="fas fa-chalkboard-teacher"></i> CLASES PERSONALES</button>
     
-    <p class="side-title">LABORATORIOS</p>
-    <button class="side-btn" onclick="openLevel('Basic')"><i class="fas fa-seedling"></i> NIVEL BÁSICO</button>
-    <button class="side-btn" onclick="openLevel('Intermediate')"><i class="fas fa-bolt"></i> NIVEL INTERMEDIO</button>
-    <button class="side-btn" onclick="openLevel('Advanced')"><i class="fas fa-microchip"></i> NIVEL AVANZADO</button>
+    <div style="height:1px; background:var(--border); margin:20px 0;"></div>
+    <p style="font-size:0.7rem; font-weight:800; opacity:0.5; margin-left:10px;">LABORATORIOS</p>
+    
+    <button class="side-btn" onclick="openLevel('Basic')"><i class="fas fa-seedling"></i> BASIC</button>
+    <button class="side-btn" onclick="openLevel('Intermediate')"><i class="fas fa-bolt"></i> INTERMEDIATE</button>
+    <button class="side-btn" onclick="openLevel('Advanced')"><i class="fas fa-microchip"></i> ADVANCED</button>
 
     <div class="theme-switch-container">
-        <span style="font-weight: 800; font-size: 0.8rem; letter-spacing: 1px;">DARK MODE</span>
+        <span style="font-weight: 800; font-size: 0.8rem;">DARK MODE</span>
         <label class="switch">
             <input type="checkbox" id="themeInput" onchange="toggleTheme()">
             <span class="slider"></span>
@@ -224,27 +225,24 @@
     <section id="home-view">
         <div class="hero">
             <h1>Identity <span>Engineering</span></h1>
-            <p>Bienvenido a la terminal del **Rators Club**. Aquí aplicamos ingeniería lingüística para desglosar el inglés y construir tu fluidez desde la base hasta la maestría profesional.</p>
+            <p>Aprende inglés mediante ingeniería lingüística. Desglosa el lenguaje y construye tu propia fluidez profesional.</p>
         </div>
 
         <div class="category-grid">
             <div class="category-card" onclick="openLevel('Basic')">
                 <i class="fas fa-seedling"></i>
-                <span>Foundation</span>
                 <h2>BASIC</h2>
-                <p>Cimientos estructurales y gramática esencial para el día a día.</p>
+                <span>Nivel 01</span>
             </div>
             <div class="category-card" onclick="openLevel('Intermediate')">
                 <i class="fas fa-bolt"></i>
-                <span>Acceleration</span>
                 <h2>INTERMEDIATE</h2>
-                <p>Fluidez avanzada, conectores y comunicación técnica fluida.</p>
+                <span>Nivel 02</span>
             </div>
             <div class="category-card" onclick="openLevel('Advanced')">
                 <i class="fas fa-microchip"></i>
-                <span>Mastery</span>
                 <h2>ADVANCED</h2>
-                <p>Certificación TOEFL, oratoria y perfeccionamiento de élite.</p>
+                <span>Nivel 03</span>
             </div>
         </div>
     </section>
@@ -252,122 +250,80 @@
     <section id="labs-view">
         <div class="view-header">
             <button class="btn-back" onclick="showHome()"><i class="fas fa-chevron-left"></i> VOLVER</button>
-            <h1 id="lvl-title" style="margin:0; font-family:'Outfit';">Labs</h1>
+            <h1 id="lvl-title">Labs</h1>
         </div>
-        <div class="labs-grid" id="labsPort">
-            </div>
+        <div class="labs-grid" id="labsPort"></div>
     </section>
 
     <section id="about-view" class="section-view">
         <div class="content-card">
-            <h1 style="font-family:'Outfit';">Acerca del Hub</h1>
-            <p style="font-size:1.2rem; line-height:1.8;">El **Rators Hub** es un ecosistema educativo diseñado por el **Teacher Netza Varo**. Tras 7 años de experiencia, hemos creado esta plataforma para que los alumnos dejen de "estudiar" y empiecen a "diseñar" su propio inglés.</p>
-            <p style="font-size:1.2rem;">Utilizamos metodologías de gamificación y visualización de datos para que la gramática sea lógica, no memorística.</p>
-            <button class="side-btn" style="margin-top:30px; background:var(--primary); color:white; justify-content:center;" onclick="showHome()">VOLVER AL INICIO</button>
+            <h1>Acerca del Hub</h1>
+            <p>Diseñado por **Teacher Netza Varo**, este Hub optimiza la retención mediante gamificación y diseño de interfaces. Deja de estudiar y empieza a diseñar tu inglés.</p>
+            <button class="side-btn" style="background:var(--primary); color:white; justify-content:center; margin-top:2rem;" onclick="showHome()">VOLVER</button>
         </div>
     </section>
 
     <section id="contact-view" class="section-view">
         <div class="content-card" style="border-color: var(--secondary);">
-            <h1 style="font-family:'Outfit';">Clases Personales Online</h1>
-            <p style="font-size:1.2rem;">¿Necesitas resultados inmediatos? Ofrecemos sesiones personalizadas enfocadas en:</p>
-            <ul style="font-weight:700; font-size:1.1rem; line-height:2.5; margin:20px 0;">
-                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Entrenamiento intensivo para TOEFL.</li>
-                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Reducción de acento y fluidez ejecutiva.</li>
-                <li><i class="fas fa-check-circle" style="color:var(--secondary)"></i> Preparación para entrevistas de trabajo en IT/Ingeniería.</li>
-            </ul>
-            <a href="https://wa.me/523231116425" class="side-btn" style="background:var(--secondary); color:white; justify-content:center; margin-top:30px;">SOLICITAR INFORMACIÓN <i class="fab fa-whatsapp"></i></a>
+            <h1>Clases Online</h1>
+            <p>Preparación intensiva para **TOEFL**, reducción de acento y fluidez ejecutiva personalizada.</p>
+            <a href="https://wa.me/523231116425" class="side-btn" style="background:var(--secondary); color:white; justify-content:center; margin-top:2rem;">MÁS INFO <i class="fab fa-whatsapp"></i></a>
         </div>
     </section>
 
 </div>
 
 <footer>
-    <div class="footer-brand">RATORS<span>CLUB</span></div>
-    <div class="footer-info">
-        <div class="footer-tile">
-            <i class="fas fa-user-graduate"></i>
-            <b>Teacher Netza Varo</b>
-            <p>Lic. en Educación | English Coach</p>
-        </div>
-        <div class="footer-tile">
-            <i class="fas fa-envelope-open"></i>
-            <b>Email</b>
-            <p>teacher.netza.varo@gmail.com</p>
-        </div>
-        <div class="footer-tile">
-            <i class="fas fa-map-marked-alt"></i>
-            <b>Location</b>
-            <p>Tepic, Nayarit, México</p>
-        </div>
+    <div style="font-size: 1.8rem; font-weight: 800;">RATORS<span>CLUB</span></div>
+    <div class="footer-grid">
+        <div class="footer-tile"><b>Teacher Netza</b><p>English Coach</p></div>
+        <div class="footer-tile"><b>Ubicación</b><p>Nayarit, México</p></div>
     </div>
-    <div style="margin-top:6rem; opacity:0.3; font-size:0.75rem; font-weight:800; letter-spacing:3px;">
-        GNU GPL v3.0 | PLATINUM EDITION 2026 | BY RATORS TEAM
+    <div style="margin-top:4rem; opacity:0.3; font-size:0.7rem; font-weight:800; letter-spacing:2px;">
+        GNU GPL v3.0 | BY RATORS TEAM
     </div>
 </footer>
 
-<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza%2C%20vengo%20del%20Hub%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20tus%20clases." class="wa-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<a href="https://wa.me/523231116425" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
-    /* ========================================
-       ENGINE: RATORS DYNAMIC SYNC v6.0
-       ======================================== */
     const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
-    let labDatabase = [];
+    let db = [];
 
-    async function syncData() {
+    async function sync() {
         try {
             const r = await fetch(SHEETS_URL);
             const t = await r.text();
-            labDatabase = parseCSV(t);
-        } catch (e) { console.error("Sync Failed."); }
+            db = parse(t);
+        } catch (e) { console.error("Sync Error."); }
     }
 
-    function parseCSV(csv) {
-        const rows = csv.trim().split(/\r?\n/);
-        const data = [];
-        for(let i=1; i<rows.length; i++) {
-            const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(cols.length >= 4) {
-                data.push({
-                    lvl: cols[0].replace(/"/g,'').trim(),
-                    name: cols[1].replace(/"/g,'').trim(),
-                    info: cols[2].replace(/"/g,'').trim(),
-                    link: cols[3].replace(/"/g,'').trim()
-                });
+    function parse(csv) {
+        const lines = csv.trim().split(/\r?\n/);
+        const list = [];
+        for(let i=1; i<lines.length; i++) {
+            const c = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if(c.length >= 4) {
+                list.push({ lvl: c[0].replace(/"/g,'').trim(), name: c[1].replace(/"/g,'').trim(), info: c[2].replace(/"/g,'').trim(), url: c[3].replace(/"/g,'').trim() });
             }
         }
-        return data;
+        return list;
     }
 
     function openLevel(lvl) {
-        // Hide all
         document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-        const view = document.getElementById('labs-view');
-        view.style.display = 'block';
+        document.getElementById('labs-view').style.display = 'block';
         document.getElementById('lvl-title').innerText = lvl + " Labs";
-        
         const port = document.getElementById('labsPort');
         port.innerHTML = '';
-        
-        const filtered = labDatabase.filter(d => d.lvl.toLowerCase() === lvl.toLowerCase());
-        
+        const filtered = db.filter(d => d.lvl.toLowerCase() === lvl.toLowerCase());
         filtered.forEach((item, i) => {
             const card = document.createElement('a');
-            card.href = item.link; card.target = '_blank'; card.className = 'lab-card';
-            card.innerHTML = `
-                <span style="font-weight:800; color:var(--primary); font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">${lvl} Session</span>
-                <h3>${item.name}</h3>
-                <p>${item.info}</p>
-                <div style="font-weight:800; color:var(--secondary); font-size:0.8rem;">LAUNCH LAB →</div>
-            `;
+            card.href = item.url; card.target = '_blank'; card.className = 'lab-card';
+            card.innerHTML = `<h3>${item.name}</h3><p>${item.info}</p><div style="font-weight:800; color:var(--primary);">ENTRAR →</div>`;
             port.appendChild(card);
-            // Roll-up animation with delay
-            setTimeout(() => card.classList.add('roll-up'), i * 120);
+            setTimeout(() => card.classList.add('roll-up'), i * 100);
         });
-
         if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
         window.scrollTo(0,0);
     }
@@ -382,23 +338,20 @@
         document.querySelectorAll('section').forEach(s => s.style.display = 'none');
         document.getElementById(id + '-view').style.display = 'block';
         toggleSidebar();
-        window.scrollTo(0,0);
     }
 
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
-        const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('rators-theme', isDark ? 'dark' : 'light');
+        localStorage.setItem('rators-mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
     function unlockAudio() { window.speechSynthesis.speak(new SpeechSynthesisUtterance("")); }
 
     window.onload = () => {
-        syncData();
-        const saved = localStorage.getItem('rators-theme');
-        if(saved === 'dark') {
+        sync();
+        if(localStorage.getItem('rators-mode') === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeInput').checked = true;
         }
@@ -406,4 +359,3 @@
 </script>
 </body>
 </html>
-
