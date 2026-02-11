@@ -3,216 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club | Elite Command Center</title>
+    <title>Rators Club | Elite Hub</title>
     
-    <link rel="icon" href="https://drive.google.com/thumbnail?id=1Xqx2WYM7wKxc9t28mWNWxXWXatctKzkF&sz=w128" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://drive.google.com/file/d/1bOFY9XiVAv-WRQnVHXSnL5FHVEoK3UAp/view?usp=sharing" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: PLATINUM WHITE
+           SISTEMA DE DISEÑO: MINIMALIST ELITE
            ======================================== */
         :root {
-            --bg: #ffffff; /* Fondo Blanco Puro */
-            --surface: #f8fafc; /* Gris ultra-ligero para tarjetas */
-            --header-bg: rgba(255, 255, 255, 0.92);
-            --text-main: #1e1b4b;
-            --text-muted: #475569;
-            --primary: #7c3aed; /* Morado Rator */
-            --secondary: #0ea5e9; /* Azul Rator */
-            --border: rgba(30, 27, 75, 0.08);
-            --glow: 0 0 30px rgba(124, 58, 237, 0.3);
-            --navy: #020617;
+            --bg: #fafafa;
+            --surface: #ffffff;
+            --surface-hover: #f4f4f5;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #4f46e5; /* Indigo elegante */
+            --primary-light: rgba(79, 70, 229, 0.08);
+            --secondary: #0284c7; /* Azul corporativo */
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
+            --radius-md: 12px;
+            --radius-lg: 20px;
         }
 
         .dark-mode {
-            --bg: #020617; 
-            --surface: rgba(15, 23, 42, 0.6);
-            --header-bg: rgba(2, 6, 23, 0.92);
+            --bg: #09090b;
+            --surface: #18181b;
+            --surface-hover: #27272a;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --primary: #a78bfa;
+            --primary: #818cf8;
+            --primary-light: rgba(129, 140, 248, 0.1);
             --secondary: #38bdf8;
-            --border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 40px rgba(56, 189, 248, 0.4);
+            --border: #27272a;
+            --border-hover: #3f3f46;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
         }
 
-        /* --- Global Reset (Anti-Overflow) --- */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        html, body { 
-            margin: 0; padding: 0; width: 100%; 
-            overflow-x: hidden; /* Evita el scroll horizontal */
-        }
-
+        /* --- Globales --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; overflow-x: hidden; scroll-behavior: smooth; }
         body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); 
-            transition: background 0.6s ease; line-height: 1.6;
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); color: var(--text-main); 
+            transition: background-color 0.4s ease, color 0.4s ease; 
+            line-height: 1.6;
         }
 
-        .bg-pattern {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background-image: radial-gradient(var(--border) 1.2px, transparent 1.2px);
-            background-size: 40px 40px; opacity: 0.2;
-        }
-
-        /* --- Header --- */
+        /* --- Header Elegante --- */
         header {
-            padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
-            background: var(--header-bg); backdrop-filter: blur(20px);
-            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--primary);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
+            background: var(--surface); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 1000;
+            transition: all 0.4s ease;
         }
-        .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; cursor: pointer; }
-        .logo-box { width: 38px; height: 38px; border: 2px solid var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--bg); box-shadow: var(--glow); }
-        .logo-svg { width: 24px; fill: var(--primary); }
-        .brand-text b { font-family: 'Outfit'; font-size: 1.2rem; letter-spacing: 0.5px; }
-
-        .sidebar-trigger {
-            background: var(--surface); border: 2px solid var(--border); width: 44px; height: 44px;
-            border-radius: 12px; cursor: pointer; color: var(--text-main); font-size: 1.1rem; 
-            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-box { 
+            width: 36px; height: 36px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; 
+            background: var(--primary-light); color: var(--primary);
         }
+        .brand-text { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
 
-        /* --- Sidebar (Pestaña de Navegación) --- */
+        .menu-trigger { 
+            background: transparent; border: 1px solid var(--border); width: 40px; height: 40px; 
+            border-radius: 8px; cursor: pointer; color: var(--text-main); font-size: 1.1rem; 
+            display: flex; align-items: center; justify-content: center; transition: 0.2s;
+        }
+        .menu-trigger:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+
+        /* --- Sidebar Minimalista --- */
         .sidebar { 
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 380px; height: 100%; 
-            background: var(--header-bg); backdrop-filter: blur(40px); z-index: 3000; 
-            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 3rem 1.5rem; 
-            box-shadow: -10px 0 50px rgba(0,0,0,0.2); display: flex; flex-direction: column;
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100%; 
+            background: var(--surface); z-index: 2000; 
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 2rem; 
+            border-left: 1px solid var(--border); box-shadow: var(--shadow-lg);
+            display: flex; flex-direction: column;
         }
         .sidebar.active { right: 0; }
         
-        .side-btn { 
-            width: 100%; padding: 16px; margin-bottom: 10px; border: 2px solid var(--border); border-radius: 18px; 
-            background: var(--bg); color: var(--text-main); font-weight: 800; text-align: left; 
-            cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; text-decoration: none; 
+        .sidebar-close {
+            background: none; border: none; font-size: 1.5rem; align-self: flex-end; 
+            color: var(--text-muted); cursor: pointer; transition: 0.2s; margin-bottom: 2rem;
         }
-        .side-btn:hover { border-color: var(--primary); transform: translateX(-5px); }
+        .sidebar-close:hover { color: var(--text-main); }
 
-        .theme-switch-container {
-            margin-top: auto; padding: 20px; background: rgba(0,0,0,0.03); border-radius: 20px;
-            display: flex; justify-content: space-between; align-items: center; border: 1.5px solid var(--border);
+        .side-btn { 
+            width: 100%; padding: 14px 18px; border: none; border-radius: var(--radius-md); 
+            background: transparent; color: var(--text-muted); font-weight: 500; text-align: left; 
+            cursor: pointer; display: flex; align-items: center; gap: 14px; text-decoration: none; 
+            font-size: 1rem; transition: 0.2s; font-family: 'Inter', sans-serif;
         }
-        .switch { position: relative; width: 50px; height: 28px; cursor: pointer; }
+        .side-btn i { font-size: 1.1rem; width: 24px; text-align: center; }
+        .side-btn:hover { background: var(--surface-hover); color: var(--text-main); }
+        .side-btn.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+
+        .theme-control {
+            margin-top: auto; padding: 18px; border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .theme-control span { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* Toggle Switch Limpio */
+        .switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #cbd5e1; border-radius: 34px; transition: 0.4s; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.4s; }
+        .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--border-hover); border-radius: 24px; transition: 0.3s; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: var(--shadow-sm); }
         input:checked + .slider { background: var(--primary); }
-        input:checked + .slider:before { transform: translateX(22px); }
+        input:checked + .slider:before { transform: translateX(20px); }
 
         /* --- Layout Principal --- */
-        .container { 
-            width: 100%; max-width: 1200px; margin: 0 auto; 
-            padding: 2rem 1rem; /* Padding ajustado para móvil */
-        }
-        
-        #home-view { animation: fadeIn 0.8s ease; }
-        .hero { text-align: center; margin: 3rem 0 4rem; padding: 0 10px; }
-        .hero h1 { font-size: clamp(2.2rem, 9vw, 5rem); font-weight: 800; margin: 0; letter-spacing: -2px; }
-        .hero h1 span { color: var(--primary); text-shadow: var(--glow); }
-        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 20px auto; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .section { display: none; animation: fadeIn 0.5s ease forwards; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Grid de Categorías (Optimizado Móvil) */
-        .category-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
-        }
-        .category-card {
-            background: var(--surface); border: 2px solid var(--border); 
-            border-radius: 35px; padding: 3rem 1.5rem; text-align: center; cursor: pointer; 
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-        }
-        .category-card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: var(--glow); }
-        .category-card i { font-size: 3.5rem; color: var(--secondary); margin-bottom: 20px; display: block; }
-        .category-card h2 { font-size: 1.8rem; margin: 0; font-family: 'Outfit'; }
+        /* --- Hero Section --- */
+        .hero { text-align: center; margin-bottom: 5rem; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -1.5px; color: var(--text-main); line-height: 1.1; margin-bottom: 1rem; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
 
-        /* Labs View (Roll-Up) */
-        #labs-view { display: none; }
-        .view-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 3rem; }
-        .btn-back { background: var(--navy); color: white; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 0.9rem; }
+        /* --- Categorías (Tarjetas Limpias) --- */
+        .grid-levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .level-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); 
+            padding: 2.5rem; text-align: left; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm); position: relative;
+        }
+        .level-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
         
-        .labs-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 20px; 
+        .level-icon { 
+            width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light); 
+            color: var(--primary); display: flex; align-items: center; justify-content: center; 
+            font-size: 1.4rem; margin-bottom: 1.5rem;
         }
-        .lab-card { 
-            background: var(--surface); border: 1.5px solid var(--border); border-radius: 30px; 
-            padding: 2.5rem 1.5rem; transition: 0.4s; opacity: 0; transform: translateY(50px); 
-            text-decoration: none; color: inherit; display: block;
+        .level-card h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .level-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .level-card .btn-text { font-size: 0.9rem; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+
+        /* --- Vista de Laboratorios --- */
+        .view-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 3rem; }
+        .btn-back { 
+            background: transparent; color: var(--text-muted); border: none; 
+            font-size: 0.95rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 8px; 
+            width: fit-content; transition: 0.2s;
         }
-        .lab-card.roll-up { animation: rollUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes rollUp { to { opacity: 1; transform: translateY(0); } }
-        .lab-card:hover { border-color: var(--primary); transform: scale(1.02); box-shadow: var(--glow); }
+        .btn-back:hover { color: var(--text-main); transform: translateX(-4px); }
+        .view-header h1 { margin: 0; font-size: 2.5rem; }
+
+        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        
+        .lab-item { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); 
+            padding: 2rem; transition: all 0.3s ease; text-decoration: none; color: inherit; display: block;
+        }
+        .lab-item:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        
+        .lab-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); margin-bottom: 10px; display: block; }
+        .lab-item h3 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; margin-bottom: 10px; }
+        .lab-item p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .lab-item .enter-link { font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+
+        /* Loading State */
+        .loader { text-align: center; padding: 4rem; color: var(--text-muted); font-size: 1.1rem; }
+        .loader i { animation: spin 1s linear infinite; margin-right: 10px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- Info Card (Acerca de / Contacto) --- */
+        .info-card { 
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); 
+            padding: 3rem; box-shadow: var(--shadow-sm); max-width: 800px; margin: 0 auto;
+        }
+        .info-card h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .info-card ul { margin: 1.5rem 0; padding-left: 1.5rem; color: var(--text-muted); }
+        .info-card li { margin-bottom: 0.8rem; }
+
+        /* --- Botón WhatsApp (Elegante) --- */
+        .wa-float { 
+            position: fixed; bottom: 30px; left: 30px; background: var(--surface); color: #10b981; 
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 28px; z-index: 1000; box-shadow: var(--shadow-md); border: 1px solid var(--border);
+            text-decoration: none; transition: 0.3s; 
+        }
+        .wa-float:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); color: #059669; }
 
         /* --- Footer --- */
-        footer { padding: 6rem 1.5rem 4rem; border-top: 1px solid var(--border); margin-top: 6rem; text-align: center; background: var(--surface); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .footer-tile { padding: 20px; }
-        .footer-tile i { font-size: 2rem; color: var(--secondary); margin-bottom: 10px; display: block; }
-
-        /* WhatsApp (Fixed Left - Optimized) */
-        .wa-float { 
-            position: fixed; bottom: 25px; left: 25px; background: #25d366; color: white; 
-            width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; font-size: 30px; z-index: 4000; 
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); text-decoration: none; transition: 0.3s; 
+        footer { 
+            padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--border); 
+            margin-top: 6rem; background: var(--bg); color: var(--text-muted); 
         }
-        .wa-float:hover { transform: scale(1.1) rotate(-10deg); }
+        .footer-brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+        .footer-text { font-size: 0.9rem; }
 
-        /* Secciones About/Contact */
-        .section-view { display: none; animation: fadeIn 0.5s ease; }
-        .content-card { 
-            background: var(--bg); border: 2.5px solid var(--primary); border-radius: 35px; 
-            padding: 3rem 1.5rem; box-shadow: var(--glow);
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Ajustes específicos para pantallas muy pequeñas */
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .category-card { padding: 2.5rem 1rem; }
-            .content-card { padding: 2rem 1rem; }
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.5rem; }
+            .container { padding: 2.5rem 1.2rem; }
+            .level-card { padding: 2rem 1.5rem; }
+            .wa-float { width: 55px; height: 55px; font-size: 26px; bottom: 20px; left: 20px; }
+            .info-card { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
-<body onclick="unlockAudio()">
-
-<div class="bg-pattern"></div>
+<body>
 
 <header>
-    <div class="header-brand" onclick="showHome()">
-        <div class="logo-box">
-            <svg class="logo-svg" viewBox="0 0 100 100">
-                <path d="M30 60 C30 40 45 35 55 35 C70 35 75 50 75 65 Q75 80 55 80 Q40 80 30 60" fill="none" stroke="currentColor" stroke-width="5"/>
-                <path d="M45 35 Q50 15 55 35 Q60 15 65 35" fill="#ef4444"/>
-            </svg>
-        </div>
-        <div class="brand-text"><b>RATORS CLUB</b></div>
+    <div class="header-brand" onclick="nav('home')">
+        <div class="logo-box"><i class="fas fa-layer-group"></i></div>
+        <div class="brand-text">Rators Hub</div>
     </div>
-    <button class="sidebar-trigger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    <button class="menu-trigger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 </header>
 
 <div class="sidebar" id="sidebar">
-    <button style="background:none; border:none; font-size:1.8rem; align-self:flex-end; color:var(--text-main); margin-bottom:1rem;" onclick="toggleSidebar()">✕</button>
+    <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
     
-    <button class="side-btn" onclick="showSection('about')"><i class="fas fa-info-circle"></i> ACERCA DE</button>
-    <button class="side-btn" onclick="showSection('contact')"><i class="fas fa-chalkboard-teacher"></i> CLASES PERSONALES</button>
-    
-    <div style="height:1px; background:var(--border); margin:20px 0;"></div>
-    <p style="font-size:0.7rem; font-weight:800; opacity:0.5; margin-left:10px;">LABORATORIOS</p>
-    
-    <button class="side-btn" onclick="openLevel('Basic')"><i class="fas fa-seedling"></i> BASIC</button>
-    <button class="side-btn" onclick="openLevel('Intermediate')"><i class="fas fa-bolt"></i> INTERMEDIATE</button>
-    <button class="side-btn" onclick="openLevel('Advanced')"><i class="fas fa-microchip"></i> ADVANCED</button>
+    <div style="margin-bottom: 2rem;">
+        <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-left: 14px;">Menu</span>
+    </div>
 
-    <div class="theme-switch-container">
-        <span style="font-weight: 800; font-size: 0.8rem;">DARK MODE</span>
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <button class="side-btn active" onclick="nav('home', this)"><i class="fas fa-grid-2"></i> Dashboard</button>
+        <button class="side-btn" onclick="nav('about', this)"><i class="fas fa-info-circle"></i> Acerca del Hub</button>
+        <button class="side-btn" onclick="nav('contact', this)"><i class="fas fa-envelope"></i> Clases Online</button>
+    </div>
+
+    <div class="theme-control">
+        <span>Dark Mode</span>
         <label class="switch">
             <input type="checkbox" id="themeInput" onchange="toggleTheme()">
             <span class="slider"></span>
@@ -221,141 +245,212 @@
 </div>
 
 <div class="container">
-    
-    <section id="home-view">
+
+    <section id="sec-home" class="section active">
         <div class="hero">
-            <h1>Identity <span>Engineering</span></h1>
-            <p>Aprende inglés mediante ingeniería lingüística. Desglosa el lenguaje y construye tu propia fluidez profesional.</p>
+            <h1>English <span>Engineering</span></h1>
+            <p>Plataforma estructurada para el desarrollo de fluidez y certificación. Selecciona un nivel operativo para comenzar.</p>
         </div>
 
-        <div class="category-grid">
-            <div class="category-card" onclick="openLevel('Basic')">
-                <i class="fas fa-seedling"></i>
-                <h2>BASIC</h2>
-                <span>Nivel 01</span>
+        <div class="grid-levels">
+            <div class="level-card" onclick="openLevel('Basic')">
+                <div class="level-icon"><i class="fas fa-cube"></i></div>
+                <h2>Foundation</h2>
+                <p>Laboratorios de nivel básico. Estructura fundamental y tiempos simples.</p>
+                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
             </div>
-            <div class="category-card" onclick="openLevel('Intermediate')">
-                <i class="fas fa-bolt"></i>
-                <h2>INTERMEDIATE</h2>
-                <span>Nivel 02</span>
+            
+            <div class="level-card" onclick="openLevel('Intermediate')">
+                <div class="level-icon"><i class="fas fa-bolt"></i></div>
+                <h2>Acceleration</h2>
+                <p>Laboratorios de nivel intermedio. Fluidez, conectores y comunicación técnica.</p>
+                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
             </div>
-            <div class="category-card" onclick="openLevel('Advanced')">
-                <i class="fas fa-microchip"></i>
-                <h2>ADVANCED</h2>
-                <span>Nivel 03</span>
+
+            <div class="level-card" onclick="openLevel('Advanced')">
+                <div class="level-icon"><i class="fas fa-shield-alt"></i></div>
+                <h2>Mastery</h2>
+                <p>Laboratorios avanzados. TOEFL, estructuras condicionales e inversión.</p>
+                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
             </div>
         </div>
     </section>
 
-    <section id="labs-view">
+    <section id="sec-labs" class="section">
         <div class="view-header">
-            <button class="btn-back" onclick="showHome()"><i class="fas fa-chevron-left"></i> VOLVER</button>
+            <button class="btn-back" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Volver al Dashboard</button>
             <h1 id="lvl-title">Labs</h1>
         </div>
-        <div class="labs-grid" id="labsPort"></div>
+        
+        <div id="loader" class="loader" style="display:none;">
+            <i class="fas fa-circle-notch"></i> Sincronizando datos...
+        </div>
+
+        <div class="labs-grid" id="labsContainer">
+            </div>
     </section>
 
-    <section id="about-view" class="section-view">
-        <div class="content-card">
-            <h1>Acerca del Hub</h1>
-            <p>Diseñado por **Teacher Netza Varo**, este Hub optimiza la retención mediante gamificación y diseño de interfaces. Deja de estudiar y empieza a diseñar tu inglés.</p>
-            <button class="side-btn" style="background:var(--primary); color:white; justify-content:center; margin-top:2rem;" onclick="showHome()">VOLVER</button>
+    <section id="sec-about" class="section">
+        <div class="info-card">
+            <h1>Filosofía del Hub</h1>
+            <p>El <b>Rators Club Hub</b> es una herramienta de ingeniería lingüística diseñada para optimizar el aprendizaje del idioma inglés, alejándose de la memorización tradicional y enfocándose en la lógica estructural.</p>
+            <p style="margin-top: 1rem;">Desarrollado por <b>Teacher Netza Varo</b>, este ecosistema centraliza recursos interactivos, evaluaciones y talleres guiados, asegurando un progreso medible desde el nivel fundacional hasta el dominio técnico.</p>
         </div>
     </section>
 
-    <section id="contact-view" class="section-view">
-        <div class="content-card" style="border-color: var(--secondary);">
-            <h1>Clases Online</h1>
-            <p>Preparación intensiva para **TOEFL**, reducción de acento y fluidez ejecutiva personalizada.</p>
-            <a href="https://wa.me/523231116425" class="side-btn" style="background:var(--secondary); color:white; justify-content:center; margin-top:2rem;">MÁS INFO <i class="fab fa-whatsapp"></i></a>
+    <section id="sec-contact" class="section">
+        <div class="info-card">
+            <h1>Programas de Entrenamiento</h1>
+            <p>Ofrecemos sesiones uno a uno especializadas para objetivos específicos:</p>
+            <ul>
+                <li>Entrenamiento intensivo para certificación TOEFL.</li>
+                <li>Reducción de acento y fluidez ejecutiva (Business English).</li>
+                <li>Preparación para entrevistas técnicas y presentaciones.</li>
+            </ul>
+            <a href="https://wa.me/523231116425" style="display: inline-flex; align-items: center; gap: 10px; background: var(--text-main); color: var(--bg); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; transition: 0.2s;">
+                <i class="fab fa-whatsapp"></i> Contactar a Teacher Netza
+            </a>
         </div>
     </section>
 
 </div>
 
 <footer>
-    <div style="font-size: 1.8rem; font-weight: 800;">RATORS<span>CLUB</span></div>
-    <div class="footer-grid">
-        <div class="footer-tile"><b>Teacher Netza</b><p>English Coach</p></div>
-        <div class="footer-tile"><b>Ubicación</b><p>Nayarit, México</p></div>
-    </div>
-    <div style="margin-top:4rem; opacity:0.3; font-size:0.7rem; font-weight:800; letter-spacing:2px;">
-        GNU GPL v3.0 | BY RATORS TEAM
-    </div>
+    <div class="footer-brand">Rators Club</div>
+    <div class="footer-text">Teacher Netza Varo • Tepic, Nayarit</div>
+    <div class="footer-text" style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">© 2026 Elite Edition System</div>
 </footer>
 
-<a href="https://wa.me/523231116425" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/523231116425" class="wa-float" target="_blank" title="Soporte WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <script>
-    const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
-    let db = [];
+    /* ========================================
+       DATA ENGINE: GOOGLE SHEETS SYNC
+       ======================================== */
+    
+    // Convertimos el link pubhtml a formato CSV para poder leerlo con Javascript
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
+    let database = [];
+    let isLoaded = false;
 
-    async function sync() {
-        try {
-            const r = await fetch(SHEETS_URL);
-            const t = await r.text();
-            db = parse(t);
-        } catch (e) { console.error("Sync Error."); }
-    }
-
-    function parse(csv) {
-        const lines = csv.trim().split(/\r?\n/);
-        const list = [];
-        for(let i=1; i<lines.length; i++) {
-            const c = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            if(c.length >= 4) {
-                list.push({ lvl: c[0].replace(/"/g,'').trim(), name: c[1].replace(/"/g,'').trim(), info: c[2].replace(/"/g,'').trim(), url: c[3].replace(/"/g,'').trim() });
-            }
+    // Función de Navegación del Sistema
+    function nav(id, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('sec-' + id).classList.add('active');
+        
+        if (btn) {
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        } else {
+            // Si navegamos desde el botón de retroceso
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.side-btn').classList.add('active'); // Selecciona Home
         }
-        return list;
-    }
-
-    function openLevel(lvl) {
-        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-        document.getElementById('labs-view').style.display = 'block';
-        document.getElementById('lvl-title').innerText = lvl + " Labs";
-        const port = document.getElementById('labsPort');
-        port.innerHTML = '';
-        const filtered = db.filter(d => d.lvl.toLowerCase() === lvl.toLowerCase());
-        filtered.forEach((item, i) => {
-            const card = document.createElement('a');
-            card.href = item.url; card.target = '_blank'; card.className = 'lab-card';
-            card.innerHTML = `<h3>${item.name}</h3><p>${item.info}</p><div style="font-weight:800; color:var(--primary);">ENTRAR →</div>`;
-            port.appendChild(card);
-            setTimeout(() => card.classList.add('roll-up'), i * 100);
-        });
+        
         if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
         window.scrollTo(0,0);
     }
 
-    function showHome() {
-        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-        document.getElementById('home-view').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showSection(id) {
-        document.querySelectorAll('section').forEach(s => s.style.display = 'none');
-        document.getElementById(id + '-view').style.display = 'block';
-        toggleSidebar();
-    }
-
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
+    // Theme Controller
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
-        localStorage.setItem('rators-mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('rators-minimal-theme', isDark ? 'dark' : 'light');
     }
 
-    function unlockAudio() { window.speechSynthesis.speak(new SpeechSynthesisUtterance("")); }
+    // Fetch and Parse CSV
+    async function syncDatabase() {
+        if(isLoaded) return;
+        try {
+            const response = await fetch(SHEET_CSV_URL);
+            const csvText = await response.text();
+            parseCSV(csvText);
+            isLoaded = true;
+        } catch (error) {
+            console.error("Error syncing with Sheets:", error);
+            document.getElementById('labsContainer').innerHTML = '<p style="color:var(--error);">Error de conexión con la base de datos. Verifica tu conexión a internet.</p>';
+        }
+    }
 
+    function parseCSV(csv) {
+        const rows = csv.trim().split(/\r?\n/);
+        database = [];
+        
+        // Empezamos en 1 para saltar los encabezados
+        for(let i = 1; i < rows.length; i++) {
+            // Regex para manejar comas dentro de comillas en el CSV
+            const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if(cols.length >= 4) {
+                database.push({
+                    level: cols[0].replace(/"/g,'').trim(),
+                    title: cols[1].replace(/"/g,'').trim(),
+                    desc: cols[2].replace(/"/g,'').trim(),
+                    link: cols[3].replace(/"/g,'').trim()
+                });
+            }
+        }
+    }
+
+    // Renderizado Dinámico de Labs
+    async function openLevel(levelName) {
+        nav('labs');
+        document.getElementById('lvl-title').innerText = levelName + ' Operations';
+        const container = document.getElementById('labsContainer');
+        const loader = document.getElementById('loader');
+        
+        container.innerHTML = '';
+        
+        if(!isLoaded) {
+            loader.style.display = 'block';
+            await syncDatabase();
+            loader.style.display = 'none';
+        }
+
+        const filteredLabs = database.filter(lab => lab.level.toLowerCase() === levelName.toLowerCase());
+        
+        if(filteredLabs.length === 0) {
+            container.innerHTML = '<p style="color:var(--text-muted);">No hay laboratorios disponibles en este nivel por el momento.</p>';
+            return;
+        }
+
+        filteredLabs.forEach(lab => {
+            const card = document.createElement('a');
+            // Si hay link, se puede hacer click. Si no, se bloquea sutilmente.
+            if(lab.link) {
+                card.href = lab.link;
+                card.target = '_blank';
+            } else {
+                card.style.opacity = "0.6";
+                card.style.cursor = "not-allowed";
+                card.onclick = (e) => e.preventDefault();
+            }
+            
+            card.className = 'lab-item';
+            card.innerHTML = `
+                <span class="lab-tag">${levelName}</span>
+                <h3>${lab.title}</h3>
+                <p>${lab.desc}</p>
+                <div class="enter-link">${lab.link ? 'Launch Lab &rarr;' : 'Maintenance Mode'}</div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Inicialización
     window.onload = () => {
-        sync();
-        if(localStorage.getItem('rators-mode') === 'dark') {
+        const pref = localStorage.getItem('rators-minimal-theme');
+        if(pref === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeInput').checked = true;
         }
+        // Pre-cargar datos en silencio para que sea instantáneo al hacer clic
+        syncDatabase();
     };
 </script>
+
 </body>
 </html>
