@@ -3,220 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rators Club | Elite Hub</title>
+    <title>Rators Club | Neon Elite Hub</title>
     
-    <link rel="icon" href="https://drive.google.com/file/d/1bOFY9XiVAv-WRQnVHXSnL5FHVEoK3UAp/view?usp=drive_link" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://drive.google.com/thumbnail?id=1bOFY9XiVAv-WRQnVHXSnL5FHVEoK3UAp&sz=w128" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================
-           SISTEMA DE DISEÑO: MINIMALIST ELITE
+           DESIGN SYSTEM: NEON ELITE ARCHITECTURE
            ======================================== */
         :root {
-            --bg: #fafafa;
+            /* Light Mode Palette */
+            --bg: #f8fafc;
             --surface: #ffffff;
-            --surface-hover: #f4f4f5;
+            --surface-hover: rgba(241, 245, 249, 0.8);
+            --header-bg: rgba(255, 255, 255, 0.85);
             --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #4f46e5; /* Indigo elegante */
-            --primary-light: rgba(79, 70, 229, 0.08);
-            --secondary: #0284c7; /* Azul corporativo */
-            --border: #e2e8f0;
-            --border-hover: #cbd5e1;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.02);
-            --radius-md: 12px;
-            --radius-lg: 20px;
+            --text-muted: #475569;
+            
+            /* Gradient & Colors */
+            --primary: #6366f1; 
+            --secondary: #0ea5e9; 
+            --accent: #10b981; 
+            --gradient-text: linear-gradient(135deg, #6366f1, #0ea5e9, #8b5cf6);
+            --gradient-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(14, 165, 233, 0.05));
+            
+            --border: rgba(15, 23, 42, 0.08);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 30px rgba(99, 102, 241, 0.08);
+            --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.25);
+            
+            --radius-md: 16px;
+            --radius-lg: 30px;
         }
 
         .dark-mode {
-            --bg: #09090b;
-            --surface: #18181b;
-            --surface-hover: #27272a;
+            /* Dark Mode Palette (Cyber Deep) */
+            --bg: #020617;
+            --surface: rgba(15, 23, 42, 0.6);
+            --surface-hover: rgba(30, 41, 59, 0.8);
+            --header-bg: rgba(2, 6, 23, 0.85);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            
             --primary: #818cf8;
-            --primary-light: rgba(129, 140, 248, 0.1);
             --secondary: #38bdf8;
-            --border: #27272a;
-            --border-hover: #3f3f46;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.5);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+            --gradient-text: linear-gradient(135deg, #818cf8, #38bdf8, #c084fc);
+            --gradient-bg: linear-gradient(135deg, rgba(129, 140, 248, 0.05), rgba(56, 189, 248, 0.05));
+            
+            --border: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(129, 140, 248, 0.5);
+            
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 15px 35px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px rgba(129, 140, 248, 0.35);
         }
 
-        /* --- Globales --- */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        /* --- Globales & Animaciones Clave --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; outline: none; }
         html, body { width: 100%; height: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+        
         body { 
             font-family: 'Inter', sans-serif; 
-            background: var(--bg); color: var(--text-main); 
-            transition: background-color 0.4s ease, color 0.4s ease; 
-            line-height: 1.6;
+            background: var(--bg); background-image: var(--gradient-bg);
+            color: var(--text-main); 
+            transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s ease; 
+            line-height: 1.7;
         }
 
-        /* --- Header Elegante --- */
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+        }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Blueprint Grid Animado --- */
+        .blueprint-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px; opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+
+        /* --- Header Premium --- */
         header {
-            padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center;
-            background: var(--surface); border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 1000;
-            transition: all 0.4s ease;
+            padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center;
+            background: var(--header-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease; box-shadow: var(--shadow-sm);
         }
-        .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .header-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit; transition: 0.3s; }
+        .header-brand:hover { transform: scale(1.02); }
+        
+        /* Nuevo Contenedor de Logo */
         .logo-box { 
-            width: 36px; height: 36px; border-radius: 8px; 
+            width: 48px; height: 48px; border-radius: 12px; 
             display: flex; align-items: center; justify-content: center; 
-            background: var(--primary-light); color: var(--primary);
+            background: var(--surface); box-shadow: var(--shadow-glow);
+            overflow: hidden; border: 2px solid var(--border-glow);
+            animation: pulseGlow 4s infinite alternate;
         }
-        .brand-text { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+        .logo-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .brand-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         .menu-trigger { 
-            background: transparent; border: 1px solid var(--border); width: 40px; height: 40px; 
-            border-radius: 8px; cursor: pointer; color: var(--text-main); font-size: 1.1rem; 
-            display: flex; align-items: center; justify-content: center; transition: 0.2s;
+            background: var(--surface); border: 1px solid var(--border); width: 48px; height: 48px; 
+            border-radius: 14px; cursor: pointer; color: var(--text-main); font-size: 1.3rem; 
+            display: flex; align-items: center; justify-content: center; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-sm);
         }
-        .menu-trigger:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+        .menu-trigger:hover { border-color: var(--primary); color: var(--primary); transform: rotate(90deg); box-shadow: var(--shadow-glow); }
 
-        /* --- Sidebar Minimalista --- */
+        /* --- Sidebar Minimalista-Neon --- */
         .sidebar { 
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100%; 
-            background: var(--surface); z-index: 2000; 
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); padding: 2rem; 
-            border-left: 1px solid var(--border); box-shadow: var(--shadow-lg);
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 360px; height: 100%; 
+            background: var(--header-bg); backdrop-filter: blur(40px); z-index: 3000; 
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); padding: 3rem 2rem; 
+            border-left: 1px solid var(--border); box-shadow: -20px 0 80px rgba(0,0,0,0.3);
             display: flex; flex-direction: column;
         }
         .sidebar.active { right: 0; }
         
         .sidebar-close {
-            background: none; border: none; font-size: 1.5rem; align-self: flex-end; 
-            color: var(--text-muted); cursor: pointer; transition: 0.2s; margin-bottom: 2rem;
+            background: none; border: none; font-size: 2rem; align-self: flex-end; 
+            color: var(--text-muted); cursor: pointer; transition: 0.3s; margin-bottom: 2rem;
         }
-        .sidebar-close:hover { color: var(--text-main); }
+        .sidebar-close:hover { color: var(--error); transform: scale(1.1) rotate(90deg); }
 
         .side-btn { 
-            width: 100%; padding: 14px 18px; border: none; border-radius: var(--radius-md); 
-            background: transparent; color: var(--text-muted); font-weight: 500; text-align: left; 
-            cursor: pointer; display: flex; align-items: center; gap: 14px; text-decoration: none; 
-            font-size: 1rem; transition: 0.2s; font-family: 'Inter', sans-serif;
+            width: 100%; padding: 16px 20px; border: 1px solid transparent; border-radius: var(--radius-md); 
+            background: transparent; color: var(--text-muted); font-weight: 600; text-align: left; 
+            cursor: pointer; display: flex; align-items: center; gap: 16px; text-decoration: none; 
+            font-size: 1.1rem; transition: 0.3s; font-family: 'Inter', sans-serif; margin-bottom: 8px;
         }
-        .side-btn i { font-size: 1.1rem; width: 24px; text-align: center; }
-        .side-btn:hover { background: var(--surface-hover); color: var(--text-main); }
-        .side-btn.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+        .side-btn i { font-size: 1.25rem; width: 26px; text-align: center; transition: 0.3s; }
+        .side-btn:hover { background: var(--surface-hover); color: var(--text-main); transform: translateX(-5px); border-color: var(--border); }
+        .side-btn.active { background: rgba(99, 102, 241, 0.1); color: var(--primary); border-color: var(--border-glow); box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.05); }
+        .side-btn.active i { color: var(--primary); }
 
+        /* Theme Toggle Elegante */
         .theme-control {
-            margin-top: auto; padding: 18px; border-top: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
+            margin-top: auto; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-md);
+            display: flex; justify-content: space-between; align-items: center; background: var(--surface);
         }
-        .theme-control span { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .theme-control span { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; font-family: 'Space Grotesk', sans-serif;}
         
-        /* Toggle Switch Limpio */
-        .switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
+        .switch { position: relative; width: 50px; height: 28px; cursor: pointer; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--border-hover); border-radius: 24px; transition: 0.3s; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; box-shadow: var(--shadow-sm); }
-        input:checked + .slider { background: var(--primary); }
-        input:checked + .slider:before { transform: translateX(20px); }
+        .slider { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--text-muted); border-radius: 30px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background: white; border-radius: 50%; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        input:checked + .slider { background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+        input:checked + .slider:before { transform: translateX(22px); }
 
         /* --- Layout Principal --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
-        .section { display: none; animation: fadeIn 0.5s ease forwards; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .section { display: none; }
+        .section.active { display: block; animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-        /* --- Hero Section --- */
-        .hero { text-align: center; margin-bottom: 5rem; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.5rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -1.5px; color: var(--text-main); line-height: 1.1; margin-bottom: 1rem; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        /* --- Hero Section Neon --- */
+        .hero { text-align: center; margin-bottom: 6rem; position: relative; }
+        .hero-badge { display: inline-block; padding: 8px 16px; background: rgba(99, 102, 241, 0.1); border: 1px solid var(--border-glow); color: var(--primary); border-radius: 30px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 1.5rem; text-transform: uppercase; animation: floatAnim 4s ease-in-out infinite; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -2px; color: var(--text-main); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero h1 span { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; line-height: 1.8; }
 
-        /* --- Categorías (Tarjetas Limpias) --- */
-        .grid-levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        /* --- Tarjetas de Nivel (Glow & Float) --- */
+        .grid-levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .level-card {
             background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); 
-            padding: 2.5rem; text-align: left; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm); position: relative;
+            padding: 3rem 2.5rem; text-align: left; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+            backdrop-filter: blur(10px);
         }
-        .level-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        
+        /* Efecto de cristal y borde neón al hacer hover */
+        .level-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s; z-index: 1; pointer-events: none;
+        }
+        .level-card:hover::before { left: 100%; }
+        
+        .level-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: var(--shadow-glow); 
+            border-color: var(--border-glow); 
+        }
         
         .level-icon { 
-            width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light); 
+            width: 60px; height: 60px; border-radius: 16px; background: var(--gradient-bg); 
             color: var(--primary); display: flex; align-items: center; justify-content: center; 
-            font-size: 1.4rem; margin-bottom: 1.5rem;
+            font-size: 1.8rem; margin-bottom: 2rem; border: 1px solid var(--border-glow);
+            transition: 0.4s;
         }
-        .level-card h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .level-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
-        .level-card .btn-text { font-size: 0.9rem; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .level-card:hover .level-icon { transform: scale(1.1) rotate(5deg); background: var(--primary); color: white; box-shadow: var(--shadow-glow); }
+        
+        .level-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--text-main); }
+        .level-card p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2.5rem; }
+        .level-card .btn-text { font-size: 1rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .level-card:hover .btn-text { gap: 15px; }
 
-        /* --- Vista de Laboratorios --- */
-        .view-header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 3rem; }
+        /* --- Vista de Laboratorios (Grid Dinámico) --- */
+        .view-header { display: flex; flex-direction: column; gap: 15px; margin-bottom: 4rem; text-align: center; }
         .btn-back { 
-            background: transparent; color: var(--text-muted); border: none; 
-            font-size: 0.95rem; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 8px; 
-            width: fit-content; transition: 0.2s;
+            background: var(--surface); color: var(--text-main); border: 1px solid var(--border); 
+            font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; 
+            width: fit-content; margin: 0 auto; padding: 12px 24px; border-radius: 30px; transition: 0.3s;
+            box-shadow: var(--shadow-sm);
         }
-        .btn-back:hover { color: var(--text-main); transform: translateX(-4px); }
-        .view-header h1 { margin: 0; font-size: 2.5rem; }
+        .btn-back:hover { color: var(--primary); border-color: var(--primary); transform: translateX(-5px); box-shadow: var(--shadow-glow); }
+        .view-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; margin: 0; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .labs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         
         .lab-item { 
             background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); 
-            padding: 2rem; transition: all 0.3s ease; text-decoration: none; color: inherit; display: block;
+            padding: 2.5rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none; color: inherit; display: block;
+            box-shadow: var(--shadow-sm); position: relative;
         }
-        .lab-item:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .lab-item:hover { border-color: var(--primary); box-shadow: var(--shadow-glow); transform: translateY(-5px); }
         
-        .lab-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); margin-bottom: 10px; display: block; }
-        .lab-item h3 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; margin-bottom: 10px; }
-        .lab-item p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-        .lab-item .enter-link { font-size: 0.85rem; font-weight: 600; color: var(--primary); }
+        .lab-tag { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--secondary); margin-bottom: 15px; display: inline-block; background: var(--secondary-light); padding: 4px 12px; border-radius: 20px;}
+        .lab-item h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 12px; color: var(--text-main); }
+        .lab-item p { color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem; line-height: 1.6; }
+        .lab-item .enter-link { font-size: 0.95rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; transition: 0.3s;}
+        .lab-item:hover .enter-link { gap: 12px; }
 
-        /* Loading State */
-        .loader { text-align: center; padding: 4rem; color: var(--text-muted); font-size: 1.1rem; }
-        .loader i { animation: spin 1s linear infinite; margin-right: 10px; }
+        /* Loader Style */
+        .loader { text-align: center; padding: 5rem; color: var(--primary); font-size: 1.5rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 15px;}
+        .loader i { animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite; font-size: 2.5rem; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* --- Info Card (Acerca de / Contacto) --- */
         .info-card { 
             background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); 
-            padding: 3rem; box-shadow: var(--shadow-sm); max-width: 800px; margin: 0 auto;
+            padding: 4rem; box-shadow: var(--shadow-md); max-width: 850px; margin: 0 auto;
+            position: relative; overflow: hidden;
         }
-        .info-card h1 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .info-card ul { margin: 1.5rem 0; padding-left: 1.5rem; color: var(--text-muted); }
-        .info-card li { margin-bottom: 0.8rem; }
+        .info-card::after { content:''; position:absolute; top:0; right:0; width:150px; height:150px; background: var(--gradient-bg); filter: blur(40px); z-index: 0; border-radius: 50%; opacity: 0.6; }
+        .info-card > * { position: relative; z-index: 1; }
+        .info-card h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+        .info-card p { font-size: 1.15rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .info-card ul { margin: 2rem 0; padding-left: 1.5rem; color: var(--text-main); font-size: 1.1rem; font-weight: 500; }
+        .info-card li { margin-bottom: 1rem; }
 
-        /* --- Botón WhatsApp (Elegante) --- */
+        /* --- Botón WhatsApp (Con Mensaje Precargado) --- */
         .wa-float { 
-            position: fixed; bottom: 30px; left: 30px; background: var(--surface); color: #10b981; 
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 28px; z-index: 1000; box-shadow: var(--shadow-md); border: 1px solid var(--border);
-            text-decoration: none; transition: 0.3s; 
+            position: fixed; bottom: 35px; left: 35px; background: #25d366; color: white; 
+            width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 34px; z-index: 4000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            text-decoration: none; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 2px solid rgba(255,255,255,0.2);
         }
-        .wa-float:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); color: #059669; }
+        .wa-float:hover { transform: translateY(-8px) scale(1.1) rotate(-10deg); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6); }
+
+        .btn-action {
+            display: inline-flex; align-items: center; gap: 12px; background: var(--text-main); color: var(--bg); 
+            padding: 16px 32px; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+            margin-top: 2rem; transition: 0.3s; border: 1px solid transparent; cursor: pointer;
+        }
+        .btn-action:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); background: var(--primary); color: white;}
 
         /* --- Footer --- */
         footer { 
-            padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--border); 
-            margin-top: 6rem; background: var(--bg); color: var(--text-muted); 
+            padding: 5rem 2rem; text-align: center; border-top: 1px solid var(--border); 
+            margin-top: 8rem; background: var(--surface); color: var(--text-muted); 
         }
-        .footer-brand { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
-        .footer-text { font-size: 0.9rem; }
+        .footer-brand { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.8rem; }
+        .footer-text { font-size: 1rem; font-weight: 500; }
 
         @media (max-width: 768px) {
             header { padding: 1rem 1.5rem; }
             .container { padding: 2.5rem 1.2rem; }
-            .level-card { padding: 2rem 1.5rem; }
-            .wa-float { width: 55px; height: 55px; font-size: 26px; bottom: 20px; left: 20px; }
-            .info-card { padding: 2rem 1.5rem; }
+            .level-card { padding: 2.5rem 1.5rem; }
+            .wa-float { width: 60px; height: 60px; font-size: 30px; bottom: 20px; left: 20px; }
+            .info-card { padding: 2.5rem 1.5rem; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
+<div class="blueprint-bg"></div>
+
 <header>
     <div class="header-brand" onclick="nav('home')">
-        <div class="logo-box"><i class="fas fa-layer-group"></i></div>
+        <div class="logo-box">
+            <img src="https://drive.google.com/thumbnail?id=1bOFY9XiVAv-WRQnVHXSnL5FHVEoK3UAp&sz=w256" alt="Rators Club Logo">
+        </div>
         <div class="brand-text">Rators Hub</div>
     </div>
     <button class="menu-trigger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
@@ -225,18 +314,18 @@
 <div class="sidebar" id="sidebar">
     <button class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
     
-    <div style="margin-bottom: 2rem;">
-        <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-left: 14px;">Menu</span>
+    <div style="margin-bottom: 2rem; padding-left: 5px;">
+        <span style="font-size: 0.8rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 2px;">System Menu</span>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 5px;">
-        <button class="side-btn active" onclick="nav('home', this)"><i class="fas fa-grid-2"></i> Dashboard</button>
-        <button class="side-btn" onclick="nav('about', this)"><i class="fas fa-info-circle"></i> Acerca del Hub</button>
-        <button class="side-btn" onclick="nav('contact', this)"><i class="fas fa-envelope"></i> Clases Online</button>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button class="side-btn active" onclick="nav('home', this)"><i class="fas fa-satellite-dish"></i> Hub Dashboard</button>
+        <button class="side-btn" onclick="nav('about', this)"><i class="fas fa-fingerprint"></i> Filosofía del Sistema</button>
+        <button class="side-btn" onclick="nav('contact', this)"><i class="fas fa-rocket"></i> Entrenamiento Elite</button>
     </div>
 
     <div class="theme-control">
-        <span>Dark Mode</span>
+        <span>Neon Dark Mode</span>
         <label class="switch">
             <input type="checkbox" id="themeInput" onchange="toggleTheme()">
             <span class="slider"></span>
@@ -248,42 +337,44 @@
 
     <section id="sec-home" class="section active">
         <div class="hero">
-            <h1>English <span>Engineering</span></h1>
-            <p>Plataforma estructurada para el desarrollo de fluidez y certificación. Selecciona un nivel operativo para comenzar.</p>
+            <div class="hero-badge"><i class="fas fa-bolt"></i> Sistema Activo v2026</div>
+            <h1>Fluency & <span>Engineering</span></h1>
+            <p>Plataforma estructurada para el desarrollo técnico del idioma inglés. Selecciona tu protocolo de entrenamiento para comenzar la inmersión.</p>
         </div>
 
         <div class="grid-levels">
             <div class="level-card" onclick="openLevel('Basic')">
                 <div class="level-icon"><i class="fas fa-cube"></i></div>
                 <h2>Foundation</h2>
-                <p>Laboratorios de nivel básico. Estructura fundamental y tiempos simples.</p>
-                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
+                <p>Construye tus cimientos. Domina el Verbo To Be, tiempos simples y estructura base sin traducir del español.</p>
+                <div class="btn-text">Iniciar Protocolo <i class="fas fa-arrow-right"></i></div>
             </div>
             
             <div class="level-card" onclick="openLevel('Intermediate')">
-                <div class="level-icon"><i class="fas fa-bolt"></i></div>
+                <div class="level-icon"><i class="fas fa-tachometer-alt"></i></div>
                 <h2>Acceleration</h2>
-                <p>Laboratorios de nivel intermedio. Fluidez, conectores y comunicación técnica.</p>
-                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
+                <p>Aumenta la velocidad. Tiempos progresivos, narrativa (Storytelling), y choque de tiempos verbales.</p>
+                <div class="btn-text">Iniciar Protocolo <i class="fas fa-arrow-right"></i></div>
             </div>
 
             <div class="level-card" onclick="openLevel('Advanced')">
                 <div class="level-icon"><i class="fas fa-shield-alt"></i></div>
-                <h2>Mastery</h2>
-                <p>Laboratorios avanzados. TOEFL, estructuras condicionales e inversión.</p>
-                <div class="btn-text">Explorar Nivel <i class="fas fa-arrow-right"></i></div>
+                <h2>Mastery (C1/C2)</h2>
+                <p>Alcanza la cumbre. Inversión negativa, condicionales irreales y estructuras de Business English.</p>
+                <div class="btn-text">Iniciar Protocolo <i class="fas fa-arrow-right"></i></div>
             </div>
         </div>
     </section>
 
     <section id="sec-labs" class="section">
         <div class="view-header">
-            <button class="btn-back" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Volver al Dashboard</button>
+            <button class="btn-back" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Volver a Operaciones</button>
             <h1 id="lvl-title">Labs</h1>
         </div>
         
         <div id="loader" class="loader" style="display:none;">
-            <i class="fas fa-circle-notch"></i> Sincronizando datos...
+            <i class="fas fa-circle-notch"></i>
+            <span>Desencriptando Laboratorios...</span>
         </div>
 
         <div class="labs-grid" id="labsContainer">
@@ -292,23 +383,23 @@
 
     <section id="sec-about" class="section">
         <div class="info-card">
-            <h1>Filosofía del Hub</h1>
-            <p>El <b>Rators Club Hub</b> es una herramienta de ingeniería lingüística diseñada para optimizar el aprendizaje del idioma inglés, alejándose de la memorización tradicional y enfocándose en la lógica estructural.</p>
-            <p style="margin-top: 1rem;">Desarrollado por <b>Teacher Netza Varo</b>, este ecosistema centraliza recursos interactivos, evaluaciones y talleres guiados, asegurando un progreso medible desde el nivel fundacional hasta el dominio técnico.</p>
+            <h1>Filosofía Rators</h1>
+            <p>El <b>Rators Elite Hub</b> no es un curso tradicional. Es una herramienta de <b>Ingeniería Lingüística</b> diseñada para instalar la lógica del idioma inglés directamente en tu cerebro, alejándose de la memorización y enfocándose en la arquitectura.</p>
+            <p>Creado y auditado por <b>Teacher Netza Varo</b>, este ecosistema te guiará desde las fundaciones más básicas hasta la sofisticación técnica requerida en certificaciones internacionales (TOEFL/CAE).</p>
         </div>
     </section>
 
     <section id="sec-contact" class="section">
         <div class="info-card">
-            <h1>Programas de Entrenamiento</h1>
-            <p>Ofrecemos sesiones uno a uno especializadas para objetivos específicos:</p>
+            <h1>Entrenamiento Personalizado</h1>
+            <p>Si la plataforma autónoma no es suficiente, ofrecemos acceso a sesiones de coaching uno-a-uno para objetivos críticos:</p>
             <ul>
-                <li>Entrenamiento intensivo para certificación TOEFL.</li>
-                <li>Reducción de acento y fluidez ejecutiva (Business English).</li>
-                <li>Preparación para entrevistas técnicas y presentaciones.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--accent); margin-right:10px;"></i> Preparación intensiva para TOEFL y certificaciones.</li>
+                <li><i class="fas fa-check-circle" style="color:var(--accent); margin-right:10px;"></i> Fluidez ejecutiva (Business & Corporate English).</li>
+                <li><i class="fas fa-check-circle" style="color:var(--accent); margin-right:10px;"></i> Corrección de fósiles gramaticales y reducción de acento.</li>
             </ul>
-            <a href="https://wa.me/523231116425" style="display: inline-flex; align-items: center; gap: 10px; background: var(--text-main); color: var(--bg); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; transition: 0.2s;">
-                <i class="fab fa-whatsapp"></i> Contactar a Teacher Netza
+            <a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza,%20estoy%20en%20el%20Rators%20Hub%20y%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20entrenamiento%20personalizado." class="btn-action" target="_blank">
+                <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> Agendar Asesoría
             </a>
         </div>
     </section>
@@ -316,37 +407,40 @@
 </div>
 
 <footer>
-    <div class="footer-brand">Rators Club</div>
-    <div class="footer-text">Teacher Netza Varo • Tepic, Nayarit</div>
-    <div class="footer-text" style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">© 2026 Elite Edition System</div>
+    <div class="footer-brand">RATORS CLUB</div>
+    <div class="footer-text">Teacher Netza Varo • Fluent Architecture</div>
+    <div class="footer-text" style="font-size: 0.85rem; margin-top: 15px; opacity: 0.6; letter-spacing: 1px;">© 2026 NEON ELITE SYSTEM</div>
 </footer>
 
-<a href="https://wa.me/523231116425" class="wa-float" target="_blank" title="Soporte WhatsApp">
+<a href="https://wa.me/523231116425?text=Hola%20Teacher%20Netza,%20estoy%20navegando%20por%20el%20Rators%20Hub%20y%20quisiera%20pedir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20clases%20de%20ingl%C3%A9s." class="wa-float" target="_blank" title="Contactar a Teacher Netza">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
     /* ========================================
-       DATA ENGINE: GOOGLE SHEETS SYNC
+       DATA ENGINE: GOOGLE SHEETS SYNC (Intacto)
        ======================================== */
     
-    // Convertimos el link pubhtml a formato CSV para poder leerlo con Javascript
+    // Convertimos el link pubhtml a formato CSV para leer datos
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDuAnM4KCnPYe-ID145fW_9zJkxluYcDdTkKV0MsOqZo59-SNiUOoM8BHKLuX4n-dYxOzWy5B4U7yX/pub?output=csv';
     let database = [];
     let isLoaded = false;
 
-    // Función de Navegación del Sistema
+    // Función de Navegación del Sistema con Animación
     function nav(id, btn) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById('sec-' + id).classList.add('active');
+        
+        // Timeout para permitir que la animación de salida ocurra si fuera necesario
+        setTimeout(() => {
+            document.getElementById('sec-' + id).classList.add('active');
+        }, 50);
         
         if (btn) {
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         } else {
-            // Si navegamos desde el botón de retroceso
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector('.side-btn').classList.add('active'); // Selecciona Home
+            document.querySelector('.side-btn').classList.add('active'); 
         }
         
         if(document.getElementById('sidebar').classList.contains('active')) toggleSidebar();
@@ -355,11 +449,11 @@
 
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
-    // Theme Controller
+    // Theme Controller (Neon Toggle)
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('rators-minimal-theme', isDark ? 'dark' : 'light');
+        localStorage.setItem('rators-neon-theme', isDark ? 'dark' : 'light');
     }
 
     // Fetch and Parse CSV
@@ -372,7 +466,7 @@
             isLoaded = true;
         } catch (error) {
             console.error("Error syncing with Sheets:", error);
-            document.getElementById('labsContainer').innerHTML = '<p style="color:var(--error);">Error de conexión con la base de datos. Verifica tu conexión a internet.</p>';
+            document.getElementById('labsContainer').innerHTML = '<p style="color:var(--error); font-weight:700;">Error de conexión. El servidor de datos no responde. Verifica tu internet.</p>';
         }
     }
 
@@ -380,9 +474,7 @@
         const rows = csv.trim().split(/\r?\n/);
         database = [];
         
-        // Empezamos en 1 para saltar los encabezados
         for(let i = 1; i < rows.length; i++) {
-            // Regex para manejar comas dentro de comillas en el CSV
             const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             if(cols.length >= 4) {
                 database.push({
@@ -398,14 +490,14 @@
     // Renderizado Dinámico de Labs
     async function openLevel(levelName) {
         nav('labs');
-        document.getElementById('lvl-title').innerText = levelName + ' Operations';
+        document.getElementById('lvl-title').innerText = levelName + ' Protocol';
         const container = document.getElementById('labsContainer');
         const loader = document.getElementById('loader');
         
         container.innerHTML = '';
         
         if(!isLoaded) {
-            loader.style.display = 'block';
+            loader.style.display = 'flex';
             await syncDatabase();
             loader.style.display = 'none';
         }
@@ -413,18 +505,18 @@
         const filteredLabs = database.filter(lab => lab.level.toLowerCase() === levelName.toLowerCase());
         
         if(filteredLabs.length === 0) {
-            container.innerHTML = '<p style="color:var(--text-muted);">No hay laboratorios disponibles en este nivel por el momento.</p>';
+            container.innerHTML = '<p style="color:var(--text-muted); font-size:1.2rem; font-weight:500;">No hay simulaciones disponibles en este sector por el momento.</p>';
             return;
         }
 
         filteredLabs.forEach(lab => {
             const card = document.createElement('a');
-            // Si hay link, se puede hacer click. Si no, se bloquea sutilmente.
+            
             if(lab.link) {
                 card.href = lab.link;
                 card.target = '_blank';
             } else {
-                card.style.opacity = "0.6";
+                card.style.opacity = "0.5";
                 card.style.cursor = "not-allowed";
                 card.onclick = (e) => e.preventDefault();
             }
@@ -434,7 +526,7 @@
                 <span class="lab-tag">${levelName}</span>
                 <h3>${lab.title}</h3>
                 <p>${lab.desc}</p>
-                <div class="enter-link">${lab.link ? 'Launch Lab &rarr;' : 'Maintenance Mode'}</div>
+                <div class="enter-link">${lab.link ? 'Launch Sequence <i class="fas fa-arrow-right"></i>' : '<i class="fas fa-lock"></i> Encrypted'}</div>
             `;
             container.appendChild(card);
         });
@@ -442,16 +534,14 @@
 
     // Inicialización
     window.onload = () => {
-        const pref = localStorage.getItem('rators-minimal-theme');
+        const pref = localStorage.getItem('rators-neon-theme');
         if(pref === 'dark') {
             document.body.classList.add('dark-mode');
             document.getElementById('themeInput').checked = true;
         }
-        // Pre-cargar datos en silencio para que sea instantáneo al hacer clic
-        syncDatabase();
+        syncDatabase(); // Sincronización en segundo plano al cargar
     };
 </script>
 
 </body>
 </html>
-
